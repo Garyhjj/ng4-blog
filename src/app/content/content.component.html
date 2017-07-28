@@ -1,0 +1,13 @@
+<div class="content">
+  <div class="post" *ngFor="let item of articles">
+    <div class="article">
+      <my-article [article]="item" [opt]="article_opt"></my-article>
+    </div>
+    <p class="more">
+      <a (click)="toDetail(item)" [title]="item.title" href="javascript:;">- 阅读剩余部分 -</a>
+    </p>
+  </div>
+  <div class="page">
+    <my-page [mypage]="setPage"></my-page>
+  </div>
+</div>

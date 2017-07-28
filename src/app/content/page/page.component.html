@@ -1,0 +1,13 @@
+<nav>
+  <ul class="pagination pull-right" *ngIf="pageMes && pageShow">
+    <li [class.disabled]="this.pageSelected <2 " (click)="prePage()">
+      <a href="javascript:void(0)">«</a>
+    </li>
+    <li *ngFor="let page of pageShow" [class.active]="pageSelected === page.page">
+      <a href="javascript:void(0)" (click)="jump(page.page)">{{page.page}}</a>
+    </li>
+    <li [class.disabled]="this.pageSelected === pageTotal" (click)="nextPage()">
+      <a href="javascript:void(0)">»</a>
+    </li>
+ </ul>
+</nav>

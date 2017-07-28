@@ -1,0 +1,6 @@
+.pagination>li:not(.active)>a:hover{
+  background: transparent;
+}
+.pagination>li:not(.active)>a:focus{
+  background: transparent;
+}

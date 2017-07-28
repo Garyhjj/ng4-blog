@@ -1,0 +1,18 @@
+<div class="">
+  <h2 class="post-title" itemprop="name headline">
+    <a target="_blank" itemtype="url" href="https://codesky.me/archives/nodejs-cli-tour-boom.wind">
+    {{article.title}}</a>
+  </h2>
+  <ul class="post-meta">
+    <li>作者: 黄嘉骏</li>
+    <li>时间: <time datetime="2017-07-27T03:44:58+00:00" itemprop="datePublished">{{article.date | sgMydate:'"MMMM DD,YYYY"' }}</time></li>
+    <li>分类: <a href="https://codesky.me/category/javascript/">{{article.type}}</a></li>
+    <li *ngIf="opt.showComment" (click)="toDetial()"><a target="_blank" href="javascript:">评论</a></li>
+  </ul>
+  <div class="post-content" [innerHTML] = "article.content">
+
+  </div>
+  <p itemprop="keywords" class="tags">
+    标签: <a href="#" *ngFor="let item of article.label">{{item.name}}, </a>
+  </p>
+</div>

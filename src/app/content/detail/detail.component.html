@@ -1,0 +1,6 @@
+<div class="" *ngIf="article.length === 0">
+  没有此文章
+</div>
+<div class="" *ngIf="article.length > 0">
+  <my-article [article]="article[0]" [opt]="article_opt"></my-article>
+</div>

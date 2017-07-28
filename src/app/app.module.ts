@@ -1,18 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
+import { AppRoutingModule } from './route/app-routing.module';
+import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
+import { NavComponent } from './nav/nav.component';
+import { AsideComponent } from './aside/aside.component';
+import { ContentModule } from './content/content.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavComponent,
+    AsideComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    CoreModule,
+    AppRoutingModule,
+    ContentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

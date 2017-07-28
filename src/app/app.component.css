@@ -1,0 +1,6 @@
+.page-header {
+    border-bottom: none;
+}
+.page-header small {
+  font-style: italic;
+}

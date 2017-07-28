@@ -1,0 +1,12 @@
+.more {
+  text-align: center;
+}
+.post .article{
+  max-height:305px;
+  overflow: hidden;
+}
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

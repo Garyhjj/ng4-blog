@@ -1,0 +1,18 @@
+.widget {
+    margin-bottom: 30px;
+}
+.widget-list {
+    list-style: none;
+    padding: 0;
+}
+.widget-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.tags {
+    display: inline-block;
+    padding: 0 2px;
+}
+a:hover {
+  text-decoration: none;
+}

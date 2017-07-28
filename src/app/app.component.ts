@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { APPConfig } from './shared/config/app.config';
+
+import { BlogService } from './core/services/blog.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  user = APPConfig.administrator;
+  asideMes:any;
+  constructor(private blogService: BlogService) {
+    this.asideMes = this.blogService.initAside();
+  }
 }

@@ -1,0 +1,42 @@
+<div class="aside">
+  <section class="widget">
+    <h3 class="widget-title">分类</h3>
+    <ul class="widget-list">
+      <li *ngFor="let type of opt.type"><a href="https://codesky.me/category/html/">{{type.name}}</a> ({{type.num}})</li>
+    </ul>
+  </section>
+  <section class="widget">
+    <h3 class="widget-title">标签列表</h3>
+    <ul class="widget-list">
+      <li class="tags" *ngFor="let label of opt.label">
+        <a rel="tag" href="https://codesky.me/tag/%E7%9F%A5%E8%AF%86/">{{label}}</a>
+      </li>
+    </ul>
+  </section>
+  <section class="widget">
+    <h3 class="widget-title">归档</h3>
+    <ul class="widget-list">
+      <li *ngFor="let date of opt.date"><a href="https://codesky.me/2017/07/">{{date | date:'MMMM yyyy'}}</a>
+      </li>
+    </ul>
+  </section>
+  <section class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <ul class="widget-list">
+      <li *ngFor="let item of opt.page1"><a href="https://codesky.me/archives/nodejs-cli-tour-boom.wind">{{item.title}}</a></li>
+    </ul>
+  </section>
+  <section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <!-- <ul class="widget-list">
+      <li><a href="https://codesky.me/archives/nodejs-cli-tour-boom.wind">Node.js 快速开发 cli 应用攻略 - 坑篇</a></li>
+      <li><a href="https://codesky.me/archives/use-node-to-create-cli-tour.wind">用 Node.js 快速开发 cli 应用攻略</a></li>
+    </ul> -->
+  </section>
+  <section class="widget">
+    <h3 class="widget-title">其它</h3>
+    <ul class="widget-list">
+      <li><a href="https://codesky.me/archives/nodejs-cli-tour-boom.wind">登录</a></li>
+    </ul>
+  </section>
+</div>
