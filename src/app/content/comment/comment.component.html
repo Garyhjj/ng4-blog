@@ -1,0 +1,36 @@
+<div class="comment-title">
+  <h3>添加新的评论</h3>
+</div>
+<form [formGroup]="commentFg" *ngIf="commentFg" >
+  <div class="form-group" [class.has-success]="commentFg.get('name').dirty && !commentFg.get('name').errors"
+  [class.has-error]="commentFg.get('name').dirty && commentFg.get('name').errors"
+  >
+    <label for="name">称呼*</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('name').dirty && commentFg.get('name').errors">
+      称呼必须填写</span>
+  </div>
+  <div class="form-group" [class.has-success]="commentFg.get('email').dirty && !commentFg.get('email').errors"
+  [class.has-error]="commentFg.get('email').dirty && commentFg.get('email').errors"
+  >
+    <label for="email">邮箱</label>
+    <input type="email" class="form-control" id="email" formControlName="email">
+    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('email').dirty && commentFg.get('email').errors">
+      邮箱格式不正确</span>
+  </div>
+  <div class="form-group" [class.has-success]="commentFg.get('url').dirty && !commentFg.get('url').errors"
+  [class.has-error]="commentFg.get('url').dirty && commentFg.get('url').errors">
+    <label for="url">网站</label>
+    <input type="text" class="form-control" id="url" placeholder="http://" formControlName="url">
+    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('url').dirty && commentFg.get('url').errors">
+      url格式不正确</span>
+  </div>
+  <div class="form-group"[class.has-success]="commentFg.get('content').dirty && !commentFg.get('content').errors"
+  [class.has-error]="commentFg.get('content').dirty && commentFg.get('content').errors">
+    <label for="content">内容*</label>
+    <textarea class="form-control" rows="3" id="content" formControlName="content"></textarea>
+    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('content').dirty && commentFg.get('content').errors">
+      评论内容不能为空</span>
+  </div>
+  <button type="submit" class="btn btn-default" (click)="submitFg()" [disabled]="!commentFg.valid">提交</button>
+</form>

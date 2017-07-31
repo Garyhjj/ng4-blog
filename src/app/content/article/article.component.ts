@@ -17,7 +17,12 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {}
 
-  toDetial() {
-    this.router.navigate(['./detail/'+this.article.title+'\*\-\*comment'])
+  // 1 可跳到评论页
+  toDetial(type:number) {
+    if(type === 1) {
+      this.router.navigate(['./detail/'+this.article._id+'\*\-\*comment'])
+    } else {
+      this.router.navigate(['./detail/'+this.article._id])
+    }
   }
 }

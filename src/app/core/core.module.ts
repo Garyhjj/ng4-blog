@@ -4,13 +4,15 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BlogService } from './services/blog.service';
+import { NgValidatorExtendService } from './services/ng-validator-extend.service';
 
 @NgModule({
     imports: [CommonModule, HttpModule, FormsModule,
     ReactiveFormsModule],
     declarations: [],
     providers: [
-      BlogService
+      BlogService,
+      NgValidatorExtendService
     ],
     exports: []
 })

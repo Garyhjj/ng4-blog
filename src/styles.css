@@ -1,42 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+
 body {
-    background-color: #FFF;
-    color: #444;
-    font-family: "Droid Serif",Georgia,"Times New Roman",STHeiti,serif;
+  background-color: #FFF;
+  color: #444;
+  font-family: "Droid Serif", Georgia, "Times New Roman", STHeiti, serif;
 }
+
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Helvetica Neue", Helvetica, Arial, 'Microsoft Yahei', 'Sims Song', sans-serif;
-}
-a {
-    color: #3354AA;
-    text-decoration: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, 'Microsoft Yahei', 'Sims Song', sans-serif;
 }
 
 a {
-    background: transparent;
+  color: #3354AA;
+  text-decoration: none;
 }
+
+a {
+  background: transparent;
+}
+
 .post-meta a, .post-content a, .widget a, .comment-content a {
-    border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
 }
+
 code {
-    padding: 2px 4px;
-    color: #B94A48;
+  padding: 2px 4px;
+  color: #B94A48;
 }
+
 .post {
-    padding: 15px 0 20px;
-    border-bottom: 1px solid #EEE;
+  padding: 15px 0 20px;
+  border-bottom: 1px solid #EEE;
 }
+
 .post-content, .comment-content {
-    line-height: 1.5;
-    word-wrap: break-word;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
+
 .post .tags {
-    clear: both;
+  clear: both;
 }
+
 .tags {
-    display: inline-block;
-    padding: 0 2px;
+  display: inline-block;
+  padding: 0 2px;
 }
+
 a:hover, a:active {
-    color: #444;
+  text-decoration: none;
+  color: #444;
 }

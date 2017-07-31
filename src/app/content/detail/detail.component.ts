@@ -20,8 +20,12 @@ export class DetailComponent implements OnInit {
   }
   ngOnInit() {
     this.route.params.subscribe((params:Params) =>{
-      let title = params.name.split('*-*')[0];
-      this.article = this.blogService.getArticleByTitle(title);
+      let id = params.name.split('*-*')[0];
+      this.blogService.getArticlesById(id).then((res) => {
+        if(res.status === 200) {
+          this.article = res.json().article;
+        }
+      })
     })
   }
 }

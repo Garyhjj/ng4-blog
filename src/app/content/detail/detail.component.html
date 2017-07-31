@@ -1,6 +1,13 @@
-<div class="" *ngIf="article.length === 0">
+<div class="" *ngIf="!article">
   没有此文章
 </div>
-<div class="" *ngIf="article.length > 0">
-  <my-article [article]="article[0]" [opt]="article_opt"></my-article>
+<div class="" *ngIf="article">
+  <my-article [article]="article" [opt]="article_opt"></my-article>
+</div>
+<ul class="post-near" *ngIf="article">
+        <li>上一篇: <a href="https://codesky.me/archives/css-font-color-contrasting.wind" title="CSS 文字反色的研究">CSS 文字反色的研究</a></li>
+        <li>下一篇: <a href="https://codesky.me/archives/css-ways-to-text-stroke.wind" title="CSS 文字描边效果的研究">CSS 文字描边效果的研究</a></li>
+    </ul>
+<div class="commnet" *ngIf="article">
+  <my-comment></my-comment>
 </div>

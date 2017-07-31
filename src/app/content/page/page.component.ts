@@ -71,34 +71,34 @@ export class PageComponent implements OnInit{
     //當選中最後一頁時
     if(this.pageSelected === this.pageTotal){
       this.pageRender(this.pageLength-1);
-      return;
-    }
-    if(this.pageLength>3){
-      if(this.pageTotal && this.pageSelected > lastPageShow-2 && this.pageSelected < this.pageTotal-1){
-        this.pageRender(this.pageLength-3);
-      }else if(this.pageSelected < this.pageShow[0].page + 2 && this.pageSelected > 2){
-        this.pageRender(2)
-      //當從前面選擇倒數第二頁時重新渲染顯示的頁碼信息
-      }else if(this.pageSelected === this.pageTotal-1){
-        this.pageRender(this.pageLength-2);
-      //當從後面選擇第二頁時重新渲染顯示的頁碼信息
-      }else if(this.pageSelected === 2){
-        this.pageRender(1);
-      }
-    }else if(this.pageLength === 3){
-      if(this.pageSelected>lastPageShow-1 && this.pageSelected < this.pageTotal || this.pageSelected<this.pageShow[0].page+1 && this.pageSelected > 1){
-        this.pageRender(1);
-    };
-    }else if(this.pageLength === 2){
-      if(this.pageSelected>lastPageShow-1 && this.pageSelected < this.pageTotal){
-        this.pageRender(0);
-      }else if(this.pageSelected<this.pageShow[0].page+1 && this.pageSelected > 1){
-        this.pageRender(1);
+    } else {
+      if(this.pageLength>3){
+        if(this.pageTotal && this.pageSelected > lastPageShow-2 && this.pageSelected < this.pageTotal-1){
+          this.pageRender(this.pageLength-3);
+        }else if(this.pageSelected < this.pageShow[0].page + 2 && this.pageSelected > 2){
+          this.pageRender(2)
+        //當從前面選擇倒數第二頁時重新渲染顯示的頁碼信息
+        }else if(this.pageSelected === this.pageTotal-1){
+          this.pageRender(this.pageLength-2);
+        //當從後面選擇第二頁時重新渲染顯示的頁碼信息
+        }else if(this.pageSelected === 2){
+          this.pageRender(1);
+        }
+      }else if(this.pageLength === 3){
+        if(this.pageSelected>lastPageShow-1 && this.pageSelected < this.pageTotal || this.pageSelected<this.pageShow[0].page+1 && this.pageSelected > 1){
+          this.pageRender(1);
       };
-    }else{
-      this.pageRender(0)
-    }
+      }else if(this.pageLength === 2){
+        if(this.pageSelected>lastPageShow-1 && this.pageSelected < this.pageTotal){
+          this.pageRender(0);
+        }else if(this.pageSelected<this.pageShow[0].page+1 && this.pageSelected > 1){
+          this.pageRender(1);
+        };
+      }else{
+        this.pageRender(0)
+      }
 
+    }
     this.router.navigate([this.pageMes.currRoute? this.pageMes.currRoute :'./',this.pageSelected]);
   }
   prePage(): void{

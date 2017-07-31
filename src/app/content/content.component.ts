@@ -25,18 +25,23 @@ export class ContentComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe((params) =>{
-      this.articles = this.blogService.getArticle(params.id);
-      this.setPage = {
-        pageSize:2,//每頁容量
-        dataTotal:this.articles.length+50,//總數據數量
-        currPage:params.id,//目前頁碼
-        currRoute:'./main',//目前除頁碼id的路由地址
-        pageLength:5//顯示的最多頁碼數
-      }
+      console.log(params)
+      this.blogService.getArticles(params.id).then((res) => {
+        console.log(res.json());
+        let result = res.json()
+        this.articles = result.articles;
+        this.setPage = {
+          pageSize:2,//每頁容量
+          dataTotal:result.total,//總數據數量
+          currPage:params.id,//目前頁碼
+          currRoute:'./main',//目前除頁碼id的路由地址
+          pageLength:5//顯示的最多頁碼數
+        }
+      })
     })
 
   }
   toDetail(item) {
-      this.router.navigate(['./detail/'+item.title])
+      this.router.navigate(['./detail/'+item._id])
   }
 }
