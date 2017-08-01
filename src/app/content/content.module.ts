@@ -8,6 +8,7 @@ import { PageComponent } from './page/page.component';
 import { DetailComponent } from './detail/detail.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditComponent } from './edit/edit.component';
+import { SearchComponent } from './search/search.component';
 import { MydatePipe } from './shared/pipes/mydate.pipe';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MydatePipe } from './shared/pipes/mydate.pipe';
     DetailComponent,
     CommentComponent,
     EditComponent,
+    SearchComponent,
     MydatePipe
   ],
   providers:    [  ]

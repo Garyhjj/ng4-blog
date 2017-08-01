@@ -1,8 +1,9 @@
 /**
- * [Injectable 验证服务]
+ * angular验证器扩展服务
  * version: '0.01'
  * name: 'ngValidatorExtend.js'
  * author: 'gary.h'
+ * 2017-08-1
  */
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
@@ -13,7 +14,7 @@ export class NgValidatorExtendService {
   constructor() { }
 
   /**
-   * [required 必须填]
+   * 必须填
    * @return {Function} [验证器]
    */
   required(): Function {
@@ -26,9 +27,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [minLength 字符串最小长度]
-   * @param  {number}   num [description]
-   * @return {Function}     [验证器]
+   * 字符串最小长度
+   * @param  {number}   num 传入的长度要求
+   * @return {Function}     验证器
    */
   minLength(num: number): Function {
     return (ctrl: AbstractControl) => {
@@ -44,9 +45,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [maxLength 字符串最大长度]
-   * @param  {number}   num [description]
-   * @return {Function}     [验证器]
+   * 字符串最大长度
+   * @param  {number}   num 传入的长度要求
+   * @return {Function}     验证器
    */
   maxLength(num: number): Function {
     return (ctrl: AbstractControl) => {
@@ -62,9 +63,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [max 限制最大数值]
-   * @param  {number}   num [description]
-   * @return {Function}     [验证器]
+   * 限制最大数值
+   * @param  {number}   num 传入的长度要求
+   * @return {Function}     验证器
    */
   max(num: number): Function {
     return (ctrl: AbstractControl) => {
@@ -79,9 +80,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [min 限制最小数值]
-   * @param  {number}   num [description]
-   * @return {Function}     [验证器]
+   * 限制最小数值
+   * @param  {number}   num 传入的长度要求
+   * @return {Function}     验证器
    */
   min(num: number): Function {
     return (ctrl: AbstractControl) => {
@@ -96,9 +97,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [betweenLength 限制字符串长度的范围]
-   * @param  {number[]} bet [长度为2]
-   * @return {Function}     [验证器]
+   * 限制字符串长度的范围
+   * @param  {number[]} bet 长度为2的数组、例‘[2,6]’
+   * @return {Function}     验证器
    */
   betweenLength(bet: number[]): Function {
     if (bet instanceof Array && bet.length > 1) {
@@ -115,9 +116,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [regex 根据输入的正则验证]
-   * @param  {any}    reg [正则表达式]
-   * @return {Function}     [验证器]
+   * 根据输入的正则验证
+   * @param  {any}    reg   正则表达式
+   * @return {Function}     验证器
    */
   regex(reg: any): Function {
     return (ctrl: AbstractControl) => {
@@ -130,8 +131,8 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [email 检测是否为邮箱]
-   * @return {Function} [验证器]
+   * 检测是否为邮箱
+   * @return {Function} 验证器
    */
   email(): Function{
     return (ctrl: AbstractControl) => {
@@ -143,9 +144,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [length 长度限制]
-   * @param  {number}   length [description]
-   * @return {Function}        [验证器]
+   * 长度限制
+   * @param  {number}   length 字符长度
+   * @return {Function}        验证器
    */
   length(length:number): Function {
     return (ctrl: AbstractControl) => {
@@ -160,9 +161,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [between 限制数值最大最小值]
-   * @param  {number[]} bet [description]
-   * @return {Function}     [验证器]
+   * 限制数值最大最小值
+   * @param  {number[]} bet 大小范围
+   * @return {Function}     验证器
    */
   between(bet:number[]): Function {
     if (bet instanceof Array && bet.length > 1) {
@@ -178,8 +179,8 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [integer 为整数]
-   * @return {Function} [验证器]
+   * 为整数
+   * @return {Function} 验证器
    */
   integer(): Function {
     return (ctrl: AbstractControl) => {
@@ -191,8 +192,8 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [number 为数字]
-   * @return {Function} [验证器]
+   * 为数字
+   * @return {Function} 验证器
    */
   number(): Function {
     return (ctrl: AbstractControl) => {
@@ -204,8 +205,8 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [mobile 为移动号码]
-   * @return {Function} [验证器]
+   * 为移动号码
+   * @return {Function} 验证器
    */
   mobile(): Function {
     return (ctrl: AbstractControl) => {
@@ -217,8 +218,8 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [telephone 为固话号码]
-   * @return {Function} [验证器]
+   * 为固话号码
+   * @return {Function} 验证器
    */
   telephone(): Function {
     return (ctrl: AbstractControl) => {
@@ -230,8 +231,8 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [url 为网址]
-   * @return {Function} [验证器]
+   * 为网址
+   * @return {Function} 验证器
    */
   url(): Function {
     return (ctrl: AbstractControl) => {
@@ -243,9 +244,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [equalTo 与同级栏位进行内容对比，是否相等]
-   * @param  {string}   name [同级栏位名称]
-   * @return {Function}      [验证器]
+   * 与同级栏位进行内容对比，是否相等
+   * @param  {string}   name 同级栏位名称
+   * @return {Function}      验证器
    */
   equalTo(name:string): Function {
     return (ctrl: AbstractControl) => {
@@ -262,9 +263,9 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [toFix 检查小数位的个数]
-   * @param  {number} num [小数位的个数]
-   * @return {Function}     [description]
+   * 检查小数位的个数
+   * @param  {number} num   小数位的个数
+   * @return {Function}     验证器
    */
   toFix(num:number): Function {
     return (ctrl: AbstractControl) => {
@@ -277,10 +278,10 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * [selfDefine 自定位验证规则]
-   * @param  {Function} fn  [自定义的规则函数，参数（ctrl,opt）]
-   * @param  {any}      opt [自定义参数]
-   * @return {Function}     [验证器]
+   * 自定位验证规则
+   * @param  {Function} fn  自定义的规则函数，参数（ctrl,opt）
+   * @param  {any}      opt 自定义参数
+   * @return {Function}     验证器
    */
   selfDefine(fn:Function,opt:any): Function {
     return (ctrl: AbstractControl) => {

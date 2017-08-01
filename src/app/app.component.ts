@@ -12,6 +12,9 @@ export class AppComponent {
   user = APPConfig.administrator;
   asideMes:any;
   constructor(private blogService: BlogService) {
-    this.asideMes = this.blogService.initAside();
+    // this.asideMes = this.blogService.initAside();
+    this.blogService.getArticlesConclude().then((res) => {
+      this.asideMes = res.json();
+    })
   }
 }

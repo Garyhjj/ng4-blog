@@ -45,4 +45,24 @@ export class BlogService {
   getArticlesById(id:string) {
     return this.http.get(BlogConfig.getArticlesById.replace('{id}',id)).toPromise()
   }
+
+  getArticlesConclude() {
+    return this.http.get(BlogConfig.getArticlesConclude).toPromise()
+  }
+
+  getArticlesByType(key:string,page:Number) {
+    return this.http.get(BlogConfig.getArticlesByType.replace('{str}',key).replace('{num}',page+'')).toPromise();
+  }
+
+  getArticlesByLabel(key:string,page:Number) {
+    return this.http.get(BlogConfig.getArticlesByLabel.replace('{str}',key).replace('{num}',page+'')).toPromise();
+  }
+
+  getArticlesByDate(key:string,page:Number) {
+    return this.http.get(BlogConfig.getArticlesByDate.replace('{str}',key).replace('{num}',page+'')).toPromise();
+  }
+
+  getArticlesByKey(key:string,page:Number) {
+    return this.http.get(BlogConfig.getArticlesByKey.replace('{str}',key).replace('{num}',page+'')).toPromise();
+  }
 }

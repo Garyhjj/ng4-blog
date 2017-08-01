@@ -25,9 +25,8 @@ export class ContentComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe((params) =>{
-      console.log(params)
+      this.setPage = '';
       this.blogService.getArticles(params.id).then((res) => {
-        console.log(res.json());
         let result = res.json()
         this.articles = result.articles;
         this.setPage = {

@@ -9,7 +9,7 @@
       <router-outlet></router-outlet>
     </div>
     <div class="col-sm-3 hidden-xs">
-      <my-aside [opt]="asideMes"></my-aside>
+      <my-aside [opt]="asideMes" *ngIf="asideMes"></my-aside>
     </div>
   </div>
 </div>

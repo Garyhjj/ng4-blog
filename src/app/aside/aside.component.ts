@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute, Params }            from '@angular/router';
 
 @Component({
   selector: 'my-aside',
@@ -8,9 +9,28 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AsideComponent implements OnInit {
   @Input() opt:any;
 
-  constructor() {  }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {  }
 
   ngOnInit() {
-    console.log(this.opt)
+
+  }
+
+  searchType(name:string) {
+    this.router.navigate(['/search/type/' + name + '/1']);
+  }
+
+  searchLabel(name:string) {
+    this.router.navigate(['/search/label/' + name + '/1']);
+  }
+
+  searchDate(name:string) {
+    this.router.navigate(['/search/date/' + name + '/1']);
+  }
+
+  toDetial(id:string) {
+    this.router.navigate(['./detail/'+id]);
   }
 }

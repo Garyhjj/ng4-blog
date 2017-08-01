@@ -2,28 +2,28 @@
   <section class="widget">
     <h3 class="widget-title">分类</h3>
     <ul class="widget-list">
-      <li *ngFor="let type of opt.type"><a href="https://codesky.me/category/html/">{{type.name}}</a> ({{type.num}})</li>
+      <li *ngFor="let type of opt.type" (click)="searchType(type.name)"><a href="javascript:">{{type.name}}</a> ({{type.num}})</li>
     </ul>
   </section>
   <section class="widget">
     <h3 class="widget-title">标签列表</h3>
     <ul class="widget-list">
-      <li class="tags" *ngFor="let label of opt.label">
-        <a rel="tag" href="https://codesky.me/tag/%E7%9F%A5%E8%AF%86/">{{label}}</a>
+      <li class="tags" *ngFor="let label of opt.label" (click)="searchLabel(label.name)">
+        <a rel="tag" href="javascript:">{{label.name}}</a>
       </li>
     </ul>
   </section>
   <section class="widget">
     <h3 class="widget-title">归档</h3>
     <ul class="widget-list">
-      <li *ngFor="let date of opt.date"><a href="https://codesky.me/2017/07/">{{date | date:'MMMM yyyy'}}</a>
+      <li *ngFor="let date of opt.date" (click)="searchDate(date.name)" ><a href="javascript:">{{date.name | date:'MMMM yyyy'}}</a>
       </li>
     </ul>
   </section>
   <section class="widget">
     <h3 class="widget-title">最新文章</h3>
     <ul class="widget-list">
-      <li *ngFor="let item of opt.page1"><a href="https://codesky.me/archives/nodejs-cli-tour-boom.wind">{{item.title}}</a></li>
+      <li *ngFor="let item of opt.lastest" (click)="toDetial(item._id)" ><a href="javascript:">{{item.title}}</a></li>
     </ul>
   </section>
   <section class="widget">
