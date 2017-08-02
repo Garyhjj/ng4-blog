@@ -1,13 +1,15 @@
 <div class="comment-title">
-  <h3>添加新的评论</h3>
+  <h3 *ngIf="!reply">添加新的评论</h3>
+  <h3 *ngIf="reply">回复: {{reply}}</h3>
+  <button type="button" name="button" class="btn btn-default" *ngIf="reply" (click)="reply=''">取消</button>
 </div>
 <form [formGroup]="commentFg" *ngIf="commentFg" >
-  <div class="form-group" [class.has-success]="commentFg.get('name').dirty && !commentFg.get('name').errors"
-  [class.has-error]="commentFg.get('name').dirty && commentFg.get('name').errors"
+  <div class="form-group" [class.has-success]="commentFg.get('author').dirty && !commentFg.get('author').errors"
+  [class.has-error]="commentFg.get('author').dirty && commentFg.get('author').errors"
   >
     <label for="name">称呼*</label>
-    <input type="text" class="form-control" id="name" formControlName="name">
-    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('name').dirty && commentFg.get('name').errors">
+    <input type="text" class="form-control" id="name" formControlName="author">
+    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('author').dirty && commentFg.get('author').errors">
       称呼必须填写</span>
   </div>
   <div class="form-group" [class.has-success]="commentFg.get('email').dirty && !commentFg.get('email').errors"
@@ -25,10 +27,13 @@
     <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('url').dirty && commentFg.get('url').errors">
       url格式不正确</span>
   </div>
+  <div class="preload" *ngIf="preload" [innerHTML]="preload">
+
+  </div>
   <div class="form-group"[class.has-success]="commentFg.get('content').dirty && !commentFg.get('content').errors"
   [class.has-error]="commentFg.get('content').dirty && commentFg.get('content').errors">
     <label for="content">内容*</label>
-    <textarea class="form-control" rows="3" id="content" formControlName="content"></textarea>
+    <textarea class="form-control" rows="3" id="content" formControlName="content" placeholder="支持markdown语法"></textarea>
     <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('content').dirty && commentFg.get('content').errors">
       评论内容不能为空</span>
   </div>

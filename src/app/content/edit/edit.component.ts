@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params }            from '@angular/router';
 
 import { FormBuilder, FormGroup, AbstractControl, Validator } from '@angular/forms';
 
 import { NgValidatorExtendService } from '../../core/services/ng-validator-extend.service';
 import { BlogService } from '../../core/services/blog.service';
+
+import * as marked from 'marked';
 
 @Component({
   selector: 'my-edit',
@@ -13,34 +16,65 @@ import { BlogService } from '../../core/services/blog.service';
 export class EditComponent implements OnInit {
   content:string;
   editFg:FormGroup;
+  original:any;
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private validExd:NgValidatorExtendService,
     private blogService: BlogService
   ) {  }
 
   ngOnInit() {
-    this.editFg = this.initForm();
+    this.route.params.subscribe((params) => {
+      if(params.id) {
+        this.blogService.getOriginalArticleById(params.id).then((res) => {
+          if(res.status == 200) {
+            this.original = res.json()
+            this.editFg = this.initForm(this.original);
+            this.content = marked(this.original.content.replace(/script/g,"```"+"script"+"```"));
+          }
+       }).catch((e) => {
+         this.editFg = this.initForm();
+       })
+     } else {
+       this.editFg = this.initForm();
+     }
+    })
+
   }
 
   //初始化原始數據
   initForm(work: any = {}): FormGroup {
     return this.formBuilder.group({
-      title: ['', this.validExd.required()],
-      type: ['', this.validExd.required()],
-      label: ['', this.validExd.required()],
-      content: ['', this.validExd.required()]
+      title: [work.title, this.validExd.required()],
+      type: [work.type, this.validExd.required()],
+      label: [work.label, this.validExd.required()],
+      content: [work.content, this.validExd.required()]
     });
   }
 
   update(val) {
-    this.content = val;
+    this.content = marked(val.replace(/script/g,"```"+"script"+"```"));
   }
   submit() {
-    let data1:any = Object.assign({},this.editFg.value);
-    data1.author = '黄嘉骏';
-    this.blogService.createArticle(data1).then((res) => {
-      console.log(res)
-    })
+    if(this.original) {
+      let data1:any = Object.assign(this.original,this.editFg.value);
+      this.blogService.updateArticle(data1).then((res) => {
+        if(res.status === 200) {
+          this.router.navigate(['/detail/'+ this.original._id]);
+          this.blogService.updateAside.next(1)
+        }
+      })
+    } else {
+      let data1:any = Object.assign({},this.editFg.value);
+      data1.author = '黄嘉骏';
+      this.blogService.createArticle(data1).then((res) => {
+        if(res.status === 200) {
+          this.router.navigate(['/detail/'+ res.json()._id])
+          this.blogService.updateAside.next(1)
+        }
+      })
+    }
   }
 }

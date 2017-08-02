@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'main/:id', component: ContentComponent },
   { path: 'detail/:name', component: DetailComponent },
   { path: 'edit', component: EditComponent},
+  { path: 'edit/:id', component: EditComponent},
   { path: 'search/:type/:value/:page',component: SearchComponent }
   // { path: 'detail', component: DetailDefineComponent },
   // { path: '**', pathMatch: 'full', redirectTo: 'BasicChartComponent' }

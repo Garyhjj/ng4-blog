@@ -25,4 +25,8 @@ export class ArticleComponent implements OnInit {
       this.router.navigate(['./detail/'+this.article._id])
     }
   }
+
+  reEdit() {
+    this.router.navigate(['./edit/'+this.article._id])
+  }
 }

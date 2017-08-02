@@ -5,6 +5,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AsideComponent } from './aside/aside.component';
+import { LoginComponent } from './login/login.component';
 import { ContentModule } from './content/content.module';
 
 
@@ -12,7 +13,8 @@ import { ContentModule } from './content/content.module';
   declarations: [
     AppComponent,
     NavComponent,
-    AsideComponent
+    AsideComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

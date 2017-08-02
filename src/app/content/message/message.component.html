@@ -1,0 +1,15 @@
+<h4 *ngIf="comments && comments.length>0">已有 {{comments.length}} 条评论</h4>
+<ol class="comment-list" *ngIf="comments">
+  <li *ngFor="let item of comments" [title]="item.url +'&&'+ item.email">
+    <div class="comment-author">
+      <a href="javascript:" (click)="replay(item.author)">{{item.author}} </a><span *ngIf="item.reply">回复:</span>
+      <a href="javascript:" (click)="replay(item.reply)">{{item.reply}}</a>
+    </div>
+    <div class="comment-meta">
+      <span>{{item.create_at | sgMydate:"MMMM Do, YYYY "}}at{{item.create_at | sgMydate:" hh:mm a"}}</span>
+    </div>
+    <div class="comment-content" itemprop="commentText" [innerHTML] = "item.content">
+    </div>
+  </li>
+
+</ol>

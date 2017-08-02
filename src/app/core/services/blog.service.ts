@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ContentConfig } from '../../content/shared/config/content.config';
 import 'rxjs/add/operator/toPromise';
+import { Subject }           from 'rxjs/Subject';
 
 import { Http } from '@angular/http';
 import { BlogConfig } from '../config/blog-config';
@@ -11,6 +12,11 @@ export class BlogService {
     private http: Http
   ) {  }
 
+  reply = new Subject<string>();
+  newComment = new Subject<any>();
+  updateAside = new Subject<any>();
+  scrollDown = new Subject<Number>();
+  
   asideMes:any;
   allArticles =ContentConfig.articles;
 
@@ -38,12 +44,20 @@ export class BlogService {
     return this.http.post(BlogConfig.createArticle,data).toPromise()
   }
 
+  updateArticle(article) {
+    return this.http.post(BlogConfig.updateArticle,article).toPromise()
+  }
+
   getArticles(num:string) {
     return this.http.get(BlogConfig.getArticles.replace('{num}',num)).toPromise()
   }
 
   getArticlesById(id:string) {
     return this.http.get(BlogConfig.getArticlesById.replace('{id}',id)).toPromise()
+  }
+
+  getOriginalArticleById(id:string) {
+    return this.http.get(BlogConfig.getOriginalArticleById.replace('{id}',id)).toPromise()
   }
 
   getArticlesConclude() {
@@ -64,5 +78,13 @@ export class BlogService {
 
   getArticlesByKey(key:string,page:Number) {
     return this.http.get(BlogConfig.getArticlesByKey.replace('{str}',key).replace('{num}',page+'')).toPromise();
+  }
+
+  getCommnetsByAritcleId(id:string) {
+    return this.http.get(BlogConfig.getCommnetsByAritcleId.replace('{str}',id)).toPromise();
+  }
+
+  createComment(comment:any) {
+    return this.http.post(BlogConfig.createComment, comment).toPromise();
   }
 }

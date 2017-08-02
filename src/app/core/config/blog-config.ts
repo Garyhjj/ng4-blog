@@ -1,11 +1,15 @@
 export class BlogConfig {
   static baseUrl = 'http://localhost:7100/'
 
-  static createArticle = BlogConfig.baseUrl + 'upload/article';
+  static createArticle = BlogConfig.baseUrl + 'articles/create';
+
+  static updateArticle = BlogConfig.baseUrl + 'articles/update';
 
   static getArticles = BlogConfig.baseUrl + 'articles?page={num}';
 
   static getArticlesById = BlogConfig.baseUrl + 'articles/id?_id={id}';
+
+  static getOriginalArticleById = BlogConfig.baseUrl + 'articles/original?_id={id}';
 
   static getArticlesConclude = BlogConfig.baseUrl + 'articles/conclude';
 
@@ -16,4 +20,8 @@ export class BlogConfig {
   static getArticlesByDate = BlogConfig.baseUrl + 'articles/date?date={str}&page={num}';
 
   static getArticlesByKey = BlogConfig.baseUrl + 'articles/key?key={str}&page={num}';
+
+  static getCommnetsByAritcleId = BlogConfig.baseUrl + 'comments?articleId={str}';
+
+  static createComment = BlogConfig.baseUrl + 'comments/create';
 }

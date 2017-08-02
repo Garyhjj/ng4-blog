@@ -10,6 +10,7 @@
     <li *ngIf="opt.showComment" (click)="toDetial(1)">
       <a target="_blank" href="javascript:">评论<span *ngIf="article.commentsCount && article.commentsCount>0">({{article.commentsCount}})</span></a>
     </li>
+    <li (click)="reEdit()"><a href="javascript:">编辑</a></li>
   </ul>
   <div class="post-content" [innerHTML] = "article.content">
 
