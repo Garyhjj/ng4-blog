@@ -12,6 +12,7 @@ import { BlogService } from '../core/services/blog.service';
 export class AsideComponent implements OnInit, OnDestroy {
   @Input() opt:any;
   mySubscribe: Subscription;
+  showLogin:boolean = false;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -42,6 +43,15 @@ export class AsideComponent implements OnInit, OnDestroy {
   }
 
   toDetial(id:string) {
-    this.router.navigate(['./detail/'+id]);
+    this.router.navigate(['/detail/'+id]);
+  }
+
+  toLogout() {
+    localStorage.removeItem('id_token');
+    this.blogService.auth.next(false);
+  }
+
+  searchKey(key:string) {
+    key && this.router.navigate(['/search/key/'+key+'/1']);
   }
 }

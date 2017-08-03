@@ -24,4 +24,6 @@ export class BlogConfig {
   static getCommnetsByAritcleId = BlogConfig.baseUrl + 'comments?articleId={str}';
 
   static createComment = BlogConfig.baseUrl + 'comments/create';
+
+  static checkUser = BlogConfig.baseUrl + 'users';
 }

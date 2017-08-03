@@ -65,6 +65,8 @@ export class EditComponent implements OnInit {
           this.router.navigate(['/detail/'+ this.original._id]);
           this.blogService.updateAside.next(1)
         }
+      }).catch((e:any) => {
+        console.log(e)
       })
     } else {
       let data1:any = Object.assign({},this.editFg.value);
@@ -74,6 +76,8 @@ export class EditComponent implements OnInit {
           this.router.navigate(['/detail/'+ res.json()._id])
           this.blogService.updateAside.next(1)
         }
+      }).catch((e:any) => {
+        console.log(e)
       })
     }
   }

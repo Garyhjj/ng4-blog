@@ -2,5 +2,5 @@
   <li role="presentation" routerLinkActive='active' ><a routerLink="/main">主页</a></li>
   <li role="presentation" routerLinkActive='active' ><a routerLink="software">软件</a></li>
   <li role="presentation" routerLinkActive='active' ><a routerLink="about">关于</a></li>
-  <li role="presentation" routerLinkActive='active' ><a routerLink="edit">新建</a></li>
+  <li role="presentation" routerLinkActive='active' ><a routerLink="edit" *ngIf="!isLogout">新建</a></li>
 </ul>

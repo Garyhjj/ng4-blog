@@ -1,4 +1,11 @@
 <div class="aside">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="关键字搜索" #keyVal>
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="searchKey(keyVal.value)">Go!</button>
+      </span>
+  </div>
+  <!-- /input-group -->
   <section class="widget">
     <h3 class="widget-title">分类</h3>
     <ul class="widget-list">
@@ -16,14 +23,14 @@
   <section class="widget">
     <h3 class="widget-title">归档</h3>
     <ul class="widget-list">
-      <li *ngFor="let date of opt.date" (click)="searchDate(date.name)" ><a href="javascript:">{{date.name | date:'MMMM yyyy'}}</a>
+      <li *ngFor="let date of opt.date" (click)="searchDate(date.name)"><a href="javascript:">{{date.name | date:'MMMM yyyy'}}</a>
       </li>
     </ul>
   </section>
   <section class="widget">
     <h3 class="widget-title">最新文章</h3>
     <ul class="widget-list">
-      <li *ngFor="let item of opt.lastest" (click)="toDetial(item._id)" ><a href="javascript:">{{item.title}}</a></li>
+      <li *ngFor="let item of opt.lastest" (click)="toDetial(item._id)"><a href="javascript:">{{item.title}}</a></li>
     </ul>
   </section>
   <section class="widget">
@@ -36,8 +43,11 @@
   <section class="widget">
     <h3 class="widget-title">其它</h3>
     <ul class="widget-list">
-      <li><a href="https://codesky.me/archives/nodejs-cli-tour-boom.wind">登录</a></li>
+      <li (click)="showLogin=!showLogin"><a href="javascript:">登录</a></li>
+    </ul>
+    <ul class="widget-list">
+      <li (click)="toLogout()"><a href="javascript:">登出</a></li>
     </ul>
   </section>
-  <my-login></my-login>
+  <my-login *ngIf="showLogin"></my-login>
 </div>

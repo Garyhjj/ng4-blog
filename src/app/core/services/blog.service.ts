@@ -1,51 +1,40 @@
 import { Injectable } from '@angular/core';
-import { ContentConfig } from '../../content/shared/config/content.config';
+
 import 'rxjs/add/operator/toPromise';
 import { Subject }           from 'rxjs/Subject';
 
 import { Http } from '@angular/http';
 import { BlogConfig } from '../config/blog-config';
 
+import { AuthHttp, JwtHelper } from 'angular2-jwt';
+
 @Injectable()
 export class BlogService {
   constructor(
-    private http: Http
+    private http: Http,
+    private authHttp: AuthHttp
   ) {  }
 
   reply = new Subject<string>();
   newComment = new Subject<any>();
   updateAside = new Subject<any>();
   scrollDown = new Subject<Number>();
-  
+  auth = new Subject<boolean>();
   asideMes:any;
-  allArticles =ContentConfig.articles;
+  jwtHelper: JwtHelper = new JwtHelper();
 
-  initAside() {
-    let articles1 = ContentConfig.articles.slice(0,2);
-    this.asideMes={
-      type:[{name:'HTML',num:'10'},{name:'CSS3',num:'15'}],
-      label: ['语法','源码'],
-      date:['1498838400000','1496246400000']
-    }
-    this.asideMes.page1 = articles1;
-    return this.asideMes
-  }
-  getArticle(page:number) {
-    return ContentConfig.articles.slice((page-1)*2,page*2);
-  }
-  getArticleByTitle(title:string) {
-    let target = this.allArticles.filter((item:any) => {
-      return item.title == title;
-    })
-    return target;
-  }
 
+  isTokenExpired() {
+    let token = localStorage.getItem('id_token');
+    if(!token) return true;
+    return this.jwtHelper.isTokenExpired(token);
+  }
   createArticle(data) {
-    return this.http.post(BlogConfig.createArticle,data).toPromise()
+    return this.authHttp.post(BlogConfig.createArticle,data).toPromise()
   }
 
   updateArticle(article) {
-    return this.http.post(BlogConfig.updateArticle,article).toPromise()
+    return this.authHttp.post(BlogConfig.updateArticle,article).toPromise()
   }
 
   getArticles(num:string) {
@@ -85,6 +74,10 @@ export class BlogService {
   }
 
   createComment(comment:any) {
-    return this.http.post(BlogConfig.createComment, comment).toPromise();
+    return this.authHttp.post(BlogConfig.createComment, comment).toPromise();
+  }
+
+  checkUser(data:{accountName:string,password:string}) {
+    return this.http.post(BlogConfig.checkUser, data).toPromise();
   }
 }

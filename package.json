@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "angular2-jwt": "^0.2.3",
+    "chinese-conv": "^1.0.1",
     "core-js": "^2.4.1",
     "marked": "^0.3.6",
     "moment": "^2.18.1",

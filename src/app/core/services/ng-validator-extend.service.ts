@@ -278,14 +278,14 @@ export class NgValidatorExtendService {
   }
 
   /**
-   * 自定位验证规则
+   * 自定位验证规则, fn(ctrl,opt)
    * @param  {Function} fn  自定义的规则函数，参数（ctrl,opt）
    * @param  {any}      opt 自定义参数
    * @return {Function}     验证器
    */
-  selfDefine(fn:Function,opt:any): Function {
+  selfDefine(fn:Function,opt?:any): Function {
     return (ctrl: AbstractControl) => {
-      fn.call(this,ctrl,opt);
+      return fn.call(this,ctrl,opt);
     }
   }
 }

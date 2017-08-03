@@ -1,22 +1,37 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 import { Router }            from '@angular/router';
+
+import { BlogService } from '../../core/services/blog.service';
+import { Subscription }           from 'rxjs/Subscription';
 
 @Component({
   selector: 'my-article',
   templateUrl: 'article.component.html',
   styleUrls: ['./article.component.css']
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, OnDestroy {
 
   @Input() article:any;
   @Input() opt:any;
+  auth:boolean = false;
+  mySubscribe : Subscription;
+
   constructor(
     private router: Router,
+    private blogService: BlogService
   ) {  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.auth = !this.blogService.isTokenExpired();
+    this.mySubscribe = this.blogService.auth.subscribe((val) => {
+      this.auth = val;
+    })
+  }
 
+  ngOnDestroy() {
+    this.mySubscribe.unsubscribe();
+  }
   // 1 可跳到评论页
   toDetial(type:number) {
     if(type === 1) {

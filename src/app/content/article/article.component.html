@@ -1,4 +1,4 @@
-<div class="">
+<div class="article">
   <h2 class="post-title" itemprop="name headline">
     <a href="javascript:" (click)="toDetial(2)">
     {{article.title}}</a>
@@ -10,7 +10,7 @@
     <li *ngIf="opt.showComment" (click)="toDetial(1)">
       <a target="_blank" href="javascript:">评论<span *ngIf="article.commentsCount && article.commentsCount>0">({{article.commentsCount}})</span></a>
     </li>
-    <li (click)="reEdit()"><a href="javascript:">编辑</a></li>
+    <li (click)="reEdit()" *ngIf="auth"><a href="javascript:">编辑</a></li>
   </ul>
   <div class="post-content" [innerHTML] = "article.content">
 

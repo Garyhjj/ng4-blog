@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, AbstractControl, Validator } from '@angular/forms';
+import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 
 import { NgValidatorExtendService } from '../../core/services/ng-validator-extend.service';
 
@@ -8,6 +8,9 @@ import { BlogService } from '../../core/services/blog.service';
 import { Subscription }           from 'rxjs/Subscription';
 
 import * as marked from 'marked';
+import { JwtHelper } from 'angular2-jwt';
+import { tify, sify } from 'chinese-conv';
+import { APPConfig } from '../../shared/config/app.config';
 
 @Component({
   selector: 'my-comment',
@@ -21,6 +24,9 @@ export class CommentComponent implements OnInit, OnDestroy {
   mySubscribe : Subscription;
   reply : string = '';
   preload: string;
+  error: string = '';
+  jwtHelper: JwtHelper = new JwtHelper();
+
   constructor(
     private formBuilder: FormBuilder,
     private validExd:NgValidatorExtendService,
@@ -28,22 +34,35 @@ export class CommentComponent implements OnInit, OnDestroy {
   ) {  }
 
   ngOnInit() {
-    this.commentFg = this.initForm();
-    this.commentFg.controls.content.valueChanges.subscribe((val) => {
-      this.preload = marked(val.replace(/script/g,"```"+"script"+"```"));
-    })
+    this.initData();
     this.mySubscribe = this.blogService.reply.subscribe((val) => {
       this.reply = val;
     })
   }
-
+  initData() {
+    this.commentFg = this.initForm();
+    this.preload = '';
+    this.commentFg.controls.content.valueChanges.subscribe((val) => {
+      this.preload = marked(val.replace(/script/g,"```"+"script"+"```"));
+    })
+  }
   ngOnDestroy() {
     this.mySubscribe.unsubscribe();
   }
   //初始化原始數據
   initForm(work: any = {}): FormGroup {
     return this.formBuilder.group({
-      author: ['', this.validExd.required()],
+      author: ['', [this.validExd.required(), this.validExd.selfDefine((ctrl,jwtHelper) => {
+        let val = ctrl.value;
+        let token = localStorage.getItem('id_token');
+        if(val != tify(APPConfig.administrator.name) && val != sify(APPConfig.administrator.name)) return null;
+        if(!token) return {
+          unauthorized:true
+        };
+        return !jwtHelper.isTokenExpired(token)? null :{
+          unauthorized:true
+        }
+      },this.jwtHelper)]],
       email: ['', this.validExd.email()],
       url: ['', this.validExd.url()],
       content: ['', this.validExd.required()]
@@ -56,9 +75,13 @@ export class CommentComponent implements OnInit, OnDestroy {
     comment.articleId = this.articleId;
     this.blogService.createComment(comment).then((res) => {
       if(res.status == 200) {
-        this.commentFg = this.initForm();
+        this.initData();
         this.blogService.newComment.next(res.json())
       };
+    }).catch((e)=> {
+      if(+e.status === 401) {
+        this.error = '游客不能够使用作者名称来作评论'
+      }
     })
   }
 }

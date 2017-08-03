@@ -48,16 +48,17 @@ export class SearchComponent implements OnInit {
     this.blogService.getArticlesByType(key, page).then((res) => {
       let data = res.json();
       this.articles = data.articles;
-      this.setPageMes(data.total, page, 'type/' + key + '/')
+      if(this.articles.length === 0) return
+      this.setPageMes(data.total, data.onePage, page, 'type/' + key + '/')
     })
   }
 
   getArticlesByLabel(key: string, page: Number) {
     this.blogService.getArticlesByLabel(key, page).then((res) => {
-      console.log(res.json())
       let data = res.json();
       this.articles = data.articles;
-      this.setPageMes(data.total, page, 'label/' + key + '/')
+      if(this.articles.length === 0) return
+      this.setPageMes(data.total, data.onePage, page, 'label/' + key + '/')
     })
   }
 
@@ -65,7 +66,8 @@ export class SearchComponent implements OnInit {
     this.blogService.getArticlesByDate(key, page).then((res) => {
       let data = res.json();
       this.articles = data.articles;
-      this.setPageMes(data.total, page, 'date/' + key + '/')
+      if(this.articles.length === 0) return
+      this.setPageMes(data.total, data.onePage, page, 'date/' + key + '/')
     })
   }
 
@@ -73,17 +75,21 @@ export class SearchComponent implements OnInit {
     this.blogService.getArticlesByKey(key, page).then((res) => {
       let data = res.json();
       this.articles = data.articles;
-      this.setPageMes(data.total, page, 'key/' + key + '/')
+      if(this.articles.length === 0) return
+      this.setPageMes(data.total, data.onePage, page, 'key/' + key + '/')
     })
   }
 
-  setPageMes(total: Number, page: Number, route: string) {
-    this.setPage = {
-      pageSize: 2,//每頁容量
-      dataTotal: total,//總數據數量
-      currPage: page,//目前頁碼
-      currRoute: './search/' + route + '/',//目前除頁碼id的路由地址
-      pageLength: 5//顯示的最多頁碼數
+  setPageMes(total: Number, onePage:number, page: Number, route: string) {
+    onePage = onePage || 2;
+    if(Number(total)>0) {
+      this.setPage = {
+        pageSize: onePage,//每頁容量
+        dataTotal: total,//總數據數量
+        currPage: page,//目前頁碼
+        currRoute: './search/' + route + '/',//目前除頁碼id的路由地址
+        pageLength: 5//顯示的最多頁碼數
+      }
     }
   }
   toDetail(item) {

@@ -1,12 +1,12 @@
 <div class="" *ngIf="!article">
-  没有此文章
+   <h3>没有此文章</h3>
 </div>
 <div class="" *ngIf="article">
   <my-article [article]="article" [opt]="article_opt"></my-article>
 </div>
 <ul class="post-near" *ngIf="article">
-        <li>上一篇: <a href="https://codesky.me/archives/css-font-color-contrasting.wind" title="CSS 文字反色的研究">CSS 文字反色的研究</a></li>
-        <li>下一篇: <a href="https://codesky.me/archives/css-ways-to-text-stroke.wind" title="CSS 文字描边效果的研究">CSS 文字描边效果的研究</a></li>
+        <li *ngIf="article.previous" (click)="toOther(article.previous._id)">上一篇: <a href="javascript:" [title]="article.previous.title">{{article.previous.title}}</a></li>
+        <li *ngIf="article.next" (click)="toOther(article.next._id)">下一篇: <a href="javascript:" [title]="article.next.title">{{article.next.title}}</a></li>
     </ul>
 <div class="msg" *ngIf="article">
   <my-msg [articleId]="article._id"></my-msg>

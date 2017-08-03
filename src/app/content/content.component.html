@@ -1,4 +1,7 @@
 <div class="content">
+  <div class="" *ngIf="articles && articles.length === 0">
+    <h3>没结果</h3>
+  </div>
   <div class="post" *ngFor="let item of articles">
     <div class="article">
       <my-article [article]="item" [opt]="article_opt"></my-article>
@@ -7,7 +10,7 @@
       <a (click)="toDetail(item)" [title]="item.title" href="javascript:;">- 阅读剩余部分 -</a>
     </p>
   </div>
-  <div class="page">
+  <div class="page" *ngIf="setPage">
     <my-page [mypage]="setPage" *ngIf="setPage"></my-page>
   </div>
 </div>

@@ -17,6 +17,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
   containerArea:any;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private blogService: BlogService
   ) {  }
 
@@ -35,7 +36,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
           if(opt.length>1 && opt[1] === 'comment') {
             setTimeout(() => {
               this.blogService.scrollDown.next(this.commentArea.nativeElement.offsetTop);
-            },20);  
+            },20);
           }
         }
       })
@@ -44,5 +45,9 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+  }
+
+  toOther(id) {
+    this.router.navigate(['/detail/'+id]);
   }
 }

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 
-import { ContentConfig } from './shared/config/content.config';
-
 import { BlogService } from '../core/services/blog.service';
+import { ContentConfig } from './shared/config/content.config';
 
 @Component({
   selector: 'my-content',
@@ -23,18 +22,18 @@ export class ContentComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-
     this.route.params.subscribe((params) =>{
       this.setPage = '';
       this.blogService.getArticles(params.id).then((res) => {
         let result = res.json()
         this.articles = result.articles;
+        if(result.total === 0 || this.articles.length === 0) return;
         this.setPage = {
-          pageSize:2,//每頁容量
+          pageSize:result.onePage,//每頁容量
           dataTotal:result.total,//總數據數量
           currPage:params.id,//目前頁碼
           currRoute:'./main',//目前除頁碼id的路由地址
-          pageLength:5//顯示的最多頁碼數
+          pageLength: ContentConfig.pageLength//顯示的最多頁碼數
         }
       })
     })

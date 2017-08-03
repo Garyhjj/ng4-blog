@@ -13,7 +13,7 @@ export function getAuthHttp(http: any) {
     noJwtError: true,
     noTokenScheme: true, // 如果是false，token前面会自动增加Bearer
     globalHeaders: [{ 'Accept': 'application/json' }],
-    tokenGetter: (() => localStorage.get('id_token')),
+    tokenGetter: (() => localStorage.getItem('id_token')),
   }), http);
 }
 

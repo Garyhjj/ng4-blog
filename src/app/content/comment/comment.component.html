@@ -3,38 +3,36 @@
   <h3 *ngIf="reply">回复: {{reply}}</h3>
   <button type="button" name="button" class="btn btn-default" *ngIf="reply" (click)="reply=''">取消</button>
 </div>
-<form [formGroup]="commentFg" *ngIf="commentFg" >
-  <div class="form-group" [class.has-success]="commentFg.get('author').dirty && !commentFg.get('author').errors"
-  [class.has-error]="commentFg.get('author').dirty && commentFg.get('author').errors"
-  >
+<form [formGroup]="commentFg" *ngIf="commentFg">
+  <div class="form-group" [class.has-success]="commentFg.get('author').dirty && !commentFg.get('author').errors" [class.has-error]="commentFg.get('author').dirty && commentFg.get('author').errors">
     <label for="name">称呼*</label>
     <input type="text" class="form-control" id="name" formControlName="author">
-    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('author').dirty && commentFg.get('author').errors">
+    <span id="helpBlock3" class="help-block" *ngIf="commentFg.get('author').dirty && commentFg.get('author').errors && commentFg.get('author').errors.required">
       称呼必须填写</span>
+    <span id="helpBlock7" class="help-block" *ngIf="commentFg.get('author').dirty && commentFg.get('author').errors && commentFg.get('author').errors.unauthorized">
+        游客不能够使用作者名称来作评论</span>
+    <span id="helpBlock7" class="help-block" *ngIf="error">
+        {{error}}</span>
   </div>
-  <div class="form-group" [class.has-success]="commentFg.get('email').dirty && !commentFg.get('email').errors"
-  [class.has-error]="commentFg.get('email').dirty && commentFg.get('email').errors"
-  >
+  <div class="form-group" [class.has-success]="commentFg.get('email').dirty && !commentFg.get('email').errors" [class.has-error]="commentFg.get('email').dirty && commentFg.get('email').errors">
     <label for="email">邮箱</label>
     <input type="email" class="form-control" id="email" formControlName="email">
-    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('email').dirty && commentFg.get('email').errors">
+    <span id="helpBlock1" class="help-block" *ngIf="commentFg.get('email').dirty && commentFg.get('email').errors">
       邮箱格式不正确</span>
   </div>
-  <div class="form-group" [class.has-success]="commentFg.get('url').dirty && !commentFg.get('url').errors"
-  [class.has-error]="commentFg.get('url').dirty && commentFg.get('url').errors">
+  <div class="form-group" [class.has-success]="commentFg.get('url').dirty && !commentFg.get('url').errors" [class.has-error]="commentFg.get('url').dirty && commentFg.get('url').errors">
     <label for="url">网站</label>
     <input type="text" class="form-control" id="url" placeholder="http://" formControlName="url">
-    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('url').dirty && commentFg.get('url').errors">
+    <span id="helpBlock4" class="help-block" *ngIf="commentFg.get('url').dirty && commentFg.get('url').errors">
       url格式不正确</span>
   </div>
   <div class="preload" *ngIf="preload" [innerHTML]="preload">
 
   </div>
-  <div class="form-group"[class.has-success]="commentFg.get('content').dirty && !commentFg.get('content').errors"
-  [class.has-error]="commentFg.get('content').dirty && commentFg.get('content').errors">
+  <div class="form-group" [class.has-success]="commentFg.get('content').dirty && !commentFg.get('content').errors" [class.has-error]="commentFg.get('content').dirty && commentFg.get('content').errors">
     <label for="content">内容*</label>
     <textarea class="form-control" rows="3" id="content" formControlName="content" placeholder="支持markdown语法"></textarea>
-    <span id="helpBlock2" class="help-block" *ngIf="commentFg.get('content').dirty && commentFg.get('content').errors">
+    <span id="helpBlock5" class="help-block" *ngIf="commentFg.get('content').dirty && commentFg.get('content').errors">
       评论内容不能为空</span>
   </div>
   <button type="submit" class="btn btn-default" (click)="submitFg()" [disabled]="!commentFg.valid">提交</button>
