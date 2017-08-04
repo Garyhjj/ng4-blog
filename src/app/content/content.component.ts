@@ -35,6 +35,7 @@ export class ContentComponent implements OnInit {
           currRoute:'./main',//目前除頁碼id的路由地址
           pageLength: ContentConfig.pageLength//顯示的最多頁碼數
         }
+        this.blogService.scrollDown.next(0);
       })
     })
 
