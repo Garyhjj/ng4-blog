@@ -18,6 +18,11 @@
     <textarea class="form-control" rows="30" id="content" #con (input)="update(con.value)" formControlName="content"></textarea>
   </div>
   <button type="submit" class="btn btn-default" (click)="submit()" [disabled]="!editFg.valid">提交</button>
+
+  <button type="button" class="btn btn-default" (click)="delete(original._id)" [disabled]="!editFg.valid" *ngIf="original">
+    删除</button>
+    <span  class="help-block">
+        {{tip}}</span>
 </form>
 
 <div class="" #test [innerHTML]="content">

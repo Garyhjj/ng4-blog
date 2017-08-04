@@ -28,3 +28,6 @@ li {
     display: list-item;
     text-align: -webkit-match-parent;
 }
+.tags {
+  margin-top: 20px;
+}

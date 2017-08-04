@@ -17,6 +17,8 @@ export class EditComponent implements OnInit {
   content:string;
   editFg:FormGroup;
   original:any;
+  tip:string = '';
+  canDelete:boolean = false;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -80,5 +82,32 @@ export class EditComponent implements OnInit {
         console.log(e)
       })
     }
+  }
+
+  delete(id) {
+    if(!this.canDelete) {
+      this.tip = '3秒内再次按删除按钮,将执行文章的删除';
+      this.canDelete = true;
+      setTimeout(() => {
+        this.canDelete = false;
+        this.tip = '';
+      },3000);
+      return;
+    }
+    this.blogService.deleteArticle(id).then((res) => {
+      if(res.status === 200) {
+        this.tip = '删除成功';
+        this.blogService.updateAside.next(1);
+        setTimeout(() => {
+          this.router.navigate(['/main/1']);
+        },500)
+      }
+    }).catch((e) => {
+      if (e.status === 404) {
+        this.tip = '没有查到此文章';
+      }else {
+        this.tip = e._body
+      }
+    })
   }
 }

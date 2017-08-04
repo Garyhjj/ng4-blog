@@ -1,9 +1,12 @@
 export class BlogConfig {
-  static baseUrl = 'http://localhost:7100/'
+  // static baseUrl = 'http://localhost:7100/';
+  static baseUrl = 'http://codeend.ngrok.cc/';
 
-  static createArticle = BlogConfig.baseUrl + 'articles/create';
+  static createArticle = BlogConfig.baseUrl + 'articles/create/';
 
-  static updateArticle = BlogConfig.baseUrl + 'articles/update';
+  static deleteArticle = BlogConfig.baseUrl + 'articles?id={str}'
+
+  static updateArticle = BlogConfig.baseUrl + 'articles/update/';
 
   static getArticles = BlogConfig.baseUrl + 'articles?page={num}';
 
@@ -11,7 +14,7 @@ export class BlogConfig {
 
   static getOriginalArticleById = BlogConfig.baseUrl + 'articles/original?_id={id}';
 
-  static getArticlesConclude = BlogConfig.baseUrl + 'articles/conclude';
+  static getArticlesConclude = BlogConfig.baseUrl + 'articles/conclude/';
 
   static getArticlesByType = BlogConfig.baseUrl + 'articles/type?type={str}&page={num}';
 
@@ -23,7 +26,7 @@ export class BlogConfig {
 
   static getCommnetsByAritcleId = BlogConfig.baseUrl + 'comments?articleId={str}';
 
-  static createComment = BlogConfig.baseUrl + 'comments/create';
+  static createComment = BlogConfig.baseUrl + 'comments/create/';
 
-  static checkUser = BlogConfig.baseUrl + 'users';
+  static checkUser = BlogConfig.baseUrl + 'users/';
 }

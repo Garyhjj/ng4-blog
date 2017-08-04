@@ -37,6 +37,10 @@ export class BlogService {
     return this.authHttp.post(BlogConfig.updateArticle,article).toPromise()
   }
 
+  deleteArticle(id:string) {
+    return this.authHttp.delete(BlogConfig.deleteArticle.replace('{str}',id)).toPromise()
+  }
+
   getArticles(num:string) {
     return this.http.get(BlogConfig.getArticles.replace('{num}',num)).toPromise()
   }

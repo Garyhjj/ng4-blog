@@ -1,5 +1,8 @@
-<div class="" *ngIf="!article">
+<div class="" *ngIf="afterReq && !article">
    <h3>没有此文章</h3>
+</div>
+<div class="" *ngIf="!afterReq">
+   <h3>loading....</h3>
 </div>
 <div class="" *ngIf="article">
   <my-article [article]="article" [opt]="article_opt"></my-article>
