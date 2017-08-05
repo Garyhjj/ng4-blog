@@ -35,13 +35,21 @@ export class ArticleComponent implements OnInit, OnDestroy {
   // 1 可跳到评论页
   toDetial(type:number) {
     if(type === 1) {
-      this.router.navigate(['./detail/'+this.article._id+'\*\-\*comment'])
+      this.router.navigate(['/detail/'+this.article._id+'\*\-\*comment']);
     } else {
-      this.router.navigate(['./detail/'+this.article._id])
+      this.router.navigate(['/detail/'+this.article._id]);
     }
   }
 
   reEdit() {
-    this.router.navigate(['./edit/'+this.article._id])
+    this.router.navigate(['/edit/'+this.article._id]);
+  }
+
+  toType(type:string) {
+    this.router.navigate(['/search/type/' + type +'/1']);
+  }
+
+  toLabel(label:string) {
+    this.router.navigate(['/search/label/' + label +'/1']);
   }
 }

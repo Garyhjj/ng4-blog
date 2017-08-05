@@ -28,5 +28,11 @@ export class BlogConfig {
 
   static createComment = BlogConfig.baseUrl + 'comments/create/';
 
+  static getNewCommentsCount = BlogConfig.baseUrl + 'comments/unreadCount/';
+
+  static getNewComments = BlogConfig.baseUrl + 'comments/newComments/';
+
+  static readNewCommentsByArticleId = BlogConfig.baseUrl + 'comments/readed?id={str}';
+
   static checkUser = BlogConfig.baseUrl + 'users/';
 }

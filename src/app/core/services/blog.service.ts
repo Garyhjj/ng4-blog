@@ -20,9 +20,9 @@ export class BlogService {
   updateAside = new Subject<any>();
   scrollDown = new Subject<Number>();
   auth = new Subject<boolean>();
+  checkUnread = new Subject<any>();
   asideMes:any;
   jwtHelper: JwtHelper = new JwtHelper();
-
 
   isTokenExpired() {
     let token = localStorage.getItem('id_token');
@@ -79,6 +79,18 @@ export class BlogService {
 
   createComment(comment:any) {
     return this.authHttp.post(BlogConfig.createComment, comment).toPromise();
+  }
+
+  getNewCommentsCount() {
+    return this.authHttp.get(BlogConfig.getNewCommentsCount).toPromise();
+  }
+
+  getNewComments() {
+    return this.authHttp.get(BlogConfig.getNewComments).toPromise();
+  }
+
+  readNewCommentsByArticleId(id:string) {
+    return this.authHttp.get(BlogConfig.readNewCommentsByArticleId.replace('{str}',id)).toPromise();
   }
 
   checkUser(data:{accountName:string,password:string}) {

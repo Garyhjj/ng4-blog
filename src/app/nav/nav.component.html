@@ -3,4 +3,5 @@
   <li role="presentation" routerLinkActive='active' ><a routerLink="software">工具</a></li>
   <li role="presentation" routerLinkActive='active' ><a routerLink="about">关于</a></li>
   <li role="presentation" routerLinkActive='active' ><a routerLink="edit" *ngIf="!isLogout">新建</a></li>
+  <li role="presentation" routerLinkActive='active' ><a routerLink="tip" *ngIf="!isLogout && num && +num>0">提醒({{num}})</a></li>
 </ul>

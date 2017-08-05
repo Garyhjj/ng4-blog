@@ -6,7 +6,7 @@
   <ul class="post-meta">
     <li>作者: 黄嘉骏</li>
     <li>时间: <time datetime="2017-07-27T03:44:58+00:00" itemprop="datePublished">{{article.create_at | sgMydate:'"MMMM DD,YYYY"' }}</time></li>
-    <li>分类: <a href="https://codesky.me/category/javascript/">{{article.type}}</a></li>
+    <li (click)="toType(article.type)">分类: <a href="javascript:">{{article.type}}</a></li>
     <li *ngIf="opt.showComment" (click)="toDetial(1)">
       <a target="_blank" href="javascript:">评论<span *ngIf="article.commentsCount && article.commentsCount>0">({{article.commentsCount}})</span></a>
     </li>
@@ -16,6 +16,6 @@
 
   </div>
   <p itemprop="keywords" class="tags">
-    标签: <a href="#" *ngFor="let item of article.label;let i = index">{{item}}<span *ngIf="i!==article.label.length-1">,</span> </a>
+    标签: <a href="javascript:" *ngFor="let item of article.label;let i = index" (click)="toLabel(item)">{{item}}<span *ngIf="i!==article.label.length-1">,</span> </a>
   </p>
 </div>
