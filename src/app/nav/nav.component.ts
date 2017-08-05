@@ -29,7 +29,12 @@ export class NavComponent implements OnInit {
 
   async getNewCommentsCount() {
     if(this.isLogout) return;
-    let res:any = await this.blogService.getNewCommentsCount().catch((e) => {console.log(e)});
+    let res:any = await this.blogService.getNewCommentsCount().catch((e) => {
+      if(e.status === 401) {
+        this.isLogout = true;
+      }
+      console.log(e);
+    });
     this.num = Number(res.json().count);
   }
 }
