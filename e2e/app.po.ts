@@ -1,6 +1,6 @@
-import { browser, element, by } from 'protractor';
+import { browser, by, element } from 'protractor';
 
-export class Ng4BlogPage {
+export class Test12Page {
   navigateTo() {
     return browser.get('/');
   }

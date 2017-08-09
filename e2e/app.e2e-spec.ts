@@ -1,14 +1,14 @@
-import { Ng4BlogPage } from './app.po';
+import { Test12Page } from './app.po';
 
-describe('ng4-blog App', () => {
-  let page: Ng4BlogPage;
+describe('test12 App', () => {
+  let page: Test12Page;
 
   beforeEach(() => {
-    page = new Ng4BlogPage();
+    page = new Test12Page();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });
