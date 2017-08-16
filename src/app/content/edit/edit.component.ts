@@ -34,7 +34,7 @@ export class EditComponent implements OnInit {
           if(res.status == 200) {
             this.original = res.json()
             this.editFg = this.initForm(this.original);
-            this.content = marked(this.original.content.replace(/script/g,"```"+"script"+"```"));
+            this.content = marked(this.original.content);
           }
        }).catch((e) => {
          this.editFg = this.initForm();
@@ -57,7 +57,7 @@ export class EditComponent implements OnInit {
   }
 
   update(val) {
-    this.content = marked(val.replace(/script/g,"```"+"script"+"```"));
+    this.content = marked(val);
   }
   submit() {
     if(this.original) {

@@ -53,6 +53,10 @@ export class BlogService {
     return this.http.get(BlogConfig.getOriginalArticleById.replace('{id}',id)).toPromise()
   }
 
+  /**
+   * 获得blog的统计信息，在侧边栏aside中使用
+   * @return {Promise<response>} http的结果
+   */
   getArticlesConclude() {
     return this.http.get(BlogConfig.getArticlesConclude).toPromise()
   }

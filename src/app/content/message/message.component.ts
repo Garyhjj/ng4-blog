@@ -26,6 +26,11 @@ export class MessageComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.mySubscribe.unsubscribe();
   }
+  /**
+   * 更改回复对象，发布新的reply值，驱动订阅了reply的方法
+   * @param  {string} author 回复的目标
+   * @return {[type]}        [description]
+   */
   replay(author:string) {
     this.blogService.reply.next(author);
   }

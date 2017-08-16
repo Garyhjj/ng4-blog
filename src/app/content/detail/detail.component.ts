@@ -15,7 +15,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
   @ViewChild('comment') commentArea:any;
 
   containerArea:any;
-  afterReq:boolean = false;
+  afterReq:boolean = false;// 控制页面loading的显示
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -52,7 +52,11 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
   }
 
-  toOther(id) {
+  /**
+   * 去到上一篇或下一篇文章
+   * @param  {string} id 文章id
+   */
+  toOther(id:string) {
     this.router.navigate(['/detail/'+id]);
   }
 }

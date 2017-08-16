@@ -39,6 +39,10 @@ export class CommentComponent implements OnInit, OnDestroy {
       this.reply = val;
     })
   }
+
+  /**
+   * 初始化表单
+   */
   initData() {
     this.commentFg = this.initForm();
     this.preload = '';
@@ -69,6 +73,9 @@ export class CommentComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * 提交表单
+   */
   submitFg() {
     let comment = Object.assign({},this.commentFg.value);
     comment.reply = this.reply;

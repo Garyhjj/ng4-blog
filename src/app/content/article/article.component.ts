@@ -14,7 +14,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   @Input() article:any;
   @Input() opt:any;
-  auth:boolean = false;
+  auth:boolean = false;// 是否是管理员
   mySubscribe : Subscription;
 
   constructor(
@@ -41,14 +41,25 @@ export class ArticleComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * 进入编辑状态
+   */
   reEdit() {
     this.router.navigate(['/edit/'+this.article._id]);
   }
 
+  /**
+   * 根据类别去搜索，路由跳转
+   * @param  {string} type 类别
+   */
   toType(type:string) {
     this.router.navigate(['/search/type/' + type +'/1']);
   }
 
+  /**
+   * 根据标签去搜索，路由跳转
+   * @param  {string} label 标签
+   */
   toLabel(label:string) {
     this.router.navigate(['/search/label/' + label +'/1']);
   }
