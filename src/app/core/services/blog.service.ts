@@ -23,6 +23,22 @@ export class BlogService {
   checkUnread = new Subject<any>();
   asideMes:any;
   jwtHelper: JwtHelper = new JwtHelper();
+  currPageArticles:any[];// 作为当前页的所有文章的缓存容器
+
+  /**
+   * 根据文章id搜索本地缓存的文章
+   * @param  {string} id 文章id
+   * @return {文章|null}    结果
+   */
+  searchLocal(id:string) {
+    if(this.currPageArticles && this.currPageArticles.length > 0) {
+      return this.currPageArticles.filter((art) => {
+        return art._id == id
+      });
+    } else {
+      return null;
+    }
+  }
 
   isTokenExpired() {
     let token = localStorage.getItem('id_token');

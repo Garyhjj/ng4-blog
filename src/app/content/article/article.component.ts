@@ -37,7 +37,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     if(type === 1) {
       this.router.navigate(['/detail/'+this.article._id+'\*\-\*comment']);
     } else {
-      this.router.navigate(['/detail/'+this.article._id]);
+      this.router.navigate(['/detail',this.article._id]);
     }
   }
 

@@ -89,8 +89,12 @@ export class SearchComponent implements OnInit {
         currPage: page,//目前頁碼
         currRoute: './search/' + route + '/',//目前除頁碼id的路由地址
         pageLength: 5//顯示的最多頁碼數
-      }
+      };
+      this.updateLocal();
     }
+  }
+  updateLocal() {
+    this.blogService.currPageArticles = this.articles;
   }
   toDetail(item) {
     this.router.navigate(['./detail/' + item._id])

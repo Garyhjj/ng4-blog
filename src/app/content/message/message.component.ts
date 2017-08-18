@@ -10,19 +10,27 @@ import { Subscription }           from 'rxjs/Subscription';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit, OnDestroy {
-  @Input() articleId :string;
+  @Input()
+  set articleId(art:string) {
+    this.getComments(art);
+  };
+  
   comments:any[];
   mySubscribe : Subscription;
+  mySubscribe1 : Subscription;
 
   constructor(private blogService: BlogService) {  }
 
   async ngOnInit() {
-    let res = await this.blogService.getCommnetsByAritcleId(this.articleId);
-    this.comments = res.json();
     this.mySubscribe = this.blogService.newComment.subscribe((val) => {
       this.comments.push(val);
     })
   }
+  async getComments(articleId:string) {
+    let res = await this.blogService.getCommnetsByAritcleId(articleId);
+    this.comments = res.json();
+  }
+
   ngOnDestroy() {
     this.mySubscribe.unsubscribe();
   }

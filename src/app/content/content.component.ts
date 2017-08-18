@@ -27,6 +27,8 @@ export class ContentComponent implements OnInit {
       this.blogService.getArticles(params.id).then((res) => {
         let result = res.json()
         this.articles = result.articles;
+        console.log(this.articles)
+        this.blogService.currPageArticles = this.articles;
         if(result.total === 0 || this.articles.length === 0) return;
         this.setPage = {
           pageSize:result.onePage,//每頁容量

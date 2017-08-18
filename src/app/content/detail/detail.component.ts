@@ -34,17 +34,24 @@ export class DetailComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.blogService.scrollDown.next(0);
       },20);
-      this.blogService.getArticlesById(id).then((res) => {
-        if(res.status === 200) {
-          this.afterReq = true;
-          this.article = res.json().article;
-          if(opt.length>1 && opt[1] === 'comment') {
-            setTimeout(() => {
-              this.blogService.scrollDown.next(this.commentArea.nativeElement.offsetTop);
-            },20);
+      let searchLocal = this.blogService.searchLocal(id);
+      if(searchLocal && searchLocal.length>0) {
+        this.article = searchLocal[0];
+        this.afterReq = true;
+        this.blogService.scrollDown.next(this.commentArea.nativeElement.offsetTop);
+      } else {
+        this.blogService.getArticlesById(id).then((res) => {
+          if(res.status === 200) {
+            this.afterReq = true;
+            this.article = res.json().article;
+            if(opt.length>1 && opt[1] === 'comment') {
+              setTimeout(() => {
+                this.blogService.scrollDown.next(this.commentArea.nativeElement.offsetTop);
+              },20);
+            }
           }
-        }
-      })
+        })
+      }
     })
   }
 
