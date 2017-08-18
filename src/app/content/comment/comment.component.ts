@@ -47,7 +47,7 @@ export class CommentComponent implements OnInit, OnDestroy {
     this.commentFg = this.initForm();
     this.preload = '';
     this.commentFg.controls.content.valueChanges.subscribe((val) => {
-      this.preload = marked(val.replace(/script/g,"```"+"script"+"```"));
+      this.preload = marked(val.replace(/script/gi,"```"+"script"+"```"));
     })
   }
   ngOnDestroy() {
