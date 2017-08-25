@@ -64,6 +64,7 @@ export class EditComponent implements OnInit {
       let data1:any = Object.assign(this.original,this.editFg.value);
       this.blogService.updateArticle(data1).then((res) => {
         if(res.status === 200) {
+          this.blogService.currPageArticles = [];
           this.router.navigate(['/detail/'+ this.original._id]);
           this.blogService.updateAside.next(1)
         }
@@ -75,6 +76,7 @@ export class EditComponent implements OnInit {
       data1.author = '黄嘉骏';
       this.blogService.createArticle(data1).then((res) => {
         if(res.status === 200) {
+          this.blogService.currPageArticles = [];
           this.router.navigate(['/detail/'+ res.json()._id])
           this.blogService.updateAside.next(1)
         }

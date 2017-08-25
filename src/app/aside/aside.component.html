@@ -9,36 +9,32 @@
   <section class="widget">
     <h3 class="widget-title">分类</h3>
     <ul class="widget-list">
-      <li *ngFor="let type of opt.type" (click)="searchType(type.name)"><a href="javascript:">{{type.name}}</a> ({{type.num}})</li>
+      <li *ngFor="let type of opt.type"><a href="#" (click)="searchType(type.name)">{{type.name}}</a> ({{type.num}})</li>
     </ul>
   </section>
   <section class="widget">
     <h3 class="widget-title">标签列表</h3>
     <ul class="widget-list">
       <li class="tags" *ngFor="let label of opt.label" (click)="searchLabel(label.name)">
-        <a rel="tag" href="javascript:">{{label.name}}</a>
+        <a rel="tag" href="#">{{label.name}}</a>
       </li>
     </ul>
   </section>
   <section class="widget">
     <h3 class="widget-title">归档</h3>
     <ul class="widget-list">
-      <li *ngFor="let date of opt.date" (click)="searchDate(date.name)"><a href="javascript:">{{date.name | date:'MMMM yyyy'}}</a>
+      <li *ngFor="let date of opt.date"><a href="#" (click)="searchDate(date.name)">{{date.name | date:'MMMM yyyy'}}</a>
       </li>
     </ul>
   </section>
   <section class="widget">
     <h3 class="widget-title">最新文章</h3>
     <ul class="widget-list">
-      <li *ngFor="let item of opt.lastest" (click)="toDetial(item._id)"><a href="javascript:">{{item.title}}</a></li>
+      <li *ngFor="let item of opt.lastest"><a href="#" (click)="toDetial(item._id)">{{item.title}}</a></li>
     </ul>
   </section>
   <section class="widget">
     <h3 class="widget-title">友情链接</h3>
-    <!-- <ul class="widget-list">
-      <li><a href="https://codesky.me/archives/nodejs-cli-tour-boom.wind">Node.js 快速开发 cli 应用攻略 - 坑篇</a></li>
-      <li><a href="https://codesky.me/archives/use-node-to-create-cli-tour.wind">用 Node.js 快速开发 cli 应用攻略</a></li>
-    </ul> -->
   </section>
   <section class="widget">
     <h3 class="widget-title">其它</h3>

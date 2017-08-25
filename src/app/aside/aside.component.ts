@@ -32,18 +32,22 @@ export class AsideComponent implements OnInit, OnDestroy {
   }
   searchType(name:string) {
     this.router.navigate(['/search/type/' + name + '/1']);
+    return false;
   }
 
   searchLabel(name:string) {
     this.router.navigate(['/search/label/' + name + '/1']);
+    return false;
   }
 
   searchDate(name:string) {
     this.router.navigate(['/search/date/' + name + '/1']);
+    return false;
   }
 
   toDetial(id:string) {
     this.router.navigate(['/detail/'+id]);
+    return false;
   }
 
   toLogout() {
