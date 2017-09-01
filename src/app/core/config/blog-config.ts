@@ -1,6 +1,7 @@
 export class BlogConfig {
   // static baseUrl = 'http://localhost:7100/';
-  static baseUrl = 'http://codeend.ngrok.cc/';
+  // static baseUrl = 'http://codeend.ngrok.cc/';
+  static baseUrl = 'http://codeend.tunnel.qydev.com/';
 
   static createArticle = BlogConfig.baseUrl + 'articles/create/';
 
