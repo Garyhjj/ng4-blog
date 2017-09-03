@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-
+import { Store } from '@ngrx/store';
 import { Router }            from '@angular/router';
 
 import { BlogService } from '../../core/services/blog.service';
@@ -19,13 +19,14 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private store$: Store<any>
   ) {  }
 
   ngOnInit() {
     this.auth = !this.blogService.isTokenExpired();
-    this.mySubscribe = this.blogService.auth.subscribe((val) => {
-      this.auth = val;
+    this.mySubscribe = this.store$.select('authReducer').subscribe((store) => {
+      this.auth = store.auth;
     })
   }
 

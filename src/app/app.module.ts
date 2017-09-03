@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducer } from './core/reducers/auth';
+import { authReducer } from './core/reducers/auth';
 import { AppRoutingModule } from './route/app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
@@ -31,7 +31,7 @@ import { AuthGuard }              from './route/auth-guard.service';
     AppRoutingModule,
     ContentModule,
     FormsModule,
-    StoreModule.forRoot({reducer})
+    StoreModule.forRoot({authReducer})
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

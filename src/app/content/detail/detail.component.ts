@@ -38,7 +38,11 @@ export class DetailComponent implements OnInit, AfterViewInit {
       if(searchLocal && searchLocal.length>0) {
         this.article = searchLocal[0];
         this.afterReq = true;
-        this.blogService.scrollDown.next(this.commentArea.nativeElement.offsetTop);
+        if(opt.length>1 && opt[1] === 'comment') {
+          setTimeout(() => {
+            this.blogService.scrollDown.next(this.commentArea.nativeElement.offsetTop);
+          },20);
+        }
       } else {
         this.blogService.getArticlesById(id).then((res) => {
           if(res.status === 200) {

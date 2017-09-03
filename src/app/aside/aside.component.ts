@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
-
+import { Store } from '@ngrx/store';
 import { Subscription }           from 'rxjs/Subscription';
+
 import { BlogService } from '../core/services/blog.service';
+import { Logout } from '../core/actions/auth';
 
 @Component({
   selector: 'my-aside',
@@ -16,7 +18,8 @@ export class AsideComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private store$: Store<any>
   ) {  }
 
   ngOnInit() {
@@ -51,8 +54,7 @@ export class AsideComponent implements OnInit, OnDestroy {
   }
 
   toLogout() {
-    localStorage.removeItem('id_token');
-    this.blogService.auth.next(false);
+    this.store$.select('authReducer').dispatch(new Logout())
   }
 
   searchKey(key:string) {

@@ -19,7 +19,6 @@ export class BlogService {
   newComment = new Subject<any>();
   updateAside = new Subject<any>();
   scrollDown = new Subject<Number>();
-  auth = new Subject<boolean>();
   checkUnread = new Subject<any>();
   asideMes:any;
   jwtHelper: JwtHelper = new JwtHelper();

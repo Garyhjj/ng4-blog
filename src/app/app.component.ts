@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { APPConfig } from './shared/config/app.config';
+import { Store } from '@ngrx/store';
 
+import { Init } from './core/actions/auth';
+import { APPConfig } from './shared/config/app.config';
 import { BlogService } from './core/services/blog.service';
 
 @Component({
@@ -12,7 +14,10 @@ export class AppComponent implements OnInit{
   user = APPConfig.administrator;
   asideMes:any;
   container:any;
-  constructor(private blogService: BlogService) {
+  constructor(
+    private blogService: BlogService,
+    private store$: Store<any>
+  ) {
     // this.asideMes = this.blogService.initAside();
     this.blogService.getArticlesConclude().then((res) => {
       this.asideMes = res.json();
@@ -20,6 +25,7 @@ export class AppComponent implements OnInit{
 
   }
   ngOnInit() {
+    this.store$.select('authReducer').dispatch(new Init())
     this.container = document.getElementsByTagName('body')[0];
     this.blogService.scrollDown.subscribe((val) => {
       this.scrollDown(val);
