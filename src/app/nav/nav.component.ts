@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../core/services/blog.service';
-
+import { Observable }        from 'rxjs';
 import { Store } from '@ngrx/store';
+
 import { Logout } from '../core/actions/auth';
 
 @Component({
@@ -10,7 +11,7 @@ import { Logout } from '../core/actions/auth';
 })
 export class NavComponent implements OnInit {
   isLogout:boolean;
-  num:number;
+  num:Observable<number>;
   interval:any;
   constructor(
     private blogService: BlogService,
@@ -21,27 +22,17 @@ export class NavComponent implements OnInit {
     this.store$.select('authReducer').subscribe((store)=>{
       this.isLogout = !store.auth;
       if(!this.isLogout) {
-        this.getNewCommentsCount();
+        this.blogService.getNewCommentsCount();
         this.setIntervalForCount();
       }else {
         clearInterval(this.interval);
       }
     })
+    this.num = this.store$.select('tipReducer').map(store => store.tip);
   }
   setIntervalForCount() {
     this.interval = setInterval(() => {
-      this.getNewCommentsCount();
+      this.blogService.getNewCommentsCount();
     },7000)
-  }
-
-  async getNewCommentsCount() {
-    if(this.isLogout) return;
-    let res:any = await this.blogService.getNewCommentsCount().catch((e) => {
-      if(e.status === 401) {
-        this.store$.select('authReducer').dispatch(new Logout());
-      }
-      console.log(e);
-    });
-    this.num = Number(res.json().count);
   }
 }

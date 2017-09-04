@@ -24,8 +24,10 @@ export class TipComponent implements OnInit {
   }
 
   toArticle(id:string) {
-    this.blogService.readNewCommentsByArticleId(id).then((res) => {this.blogService.checkUnread.next(1)}).
-    catch((e) => console.log(e));
-    this.router.navigate(['/detail/'+id]);
+    // this.blogService.readNewCommentsByArticleId(id).then((res) => {this.blogService.checkUnread.next(1)}).
+    // catch((e) => console.log(e));
+    this.router.navigate(['/detail/'+id]).then(() => {
+      this.blogService.readNewCommentsByArticleId(id);
+    });
   }
 }

@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
-
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
+import { Observable }        from 'rxjs';
 import { Subject }           from 'rxjs/Subject';
-
+import { Store } from '@ngrx/store';
 import { Http } from '@angular/http';
 import { BlogConfig } from '../config/blog-config';
-
+import * as tip from '../actions/tip';
+import * as auth from '../actions/auth';
 import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class BlogService {
   constructor(
     private http: Http,
-    private authHttp: AuthHttp
+    private authHttp: AuthHttp,
+    private store$: Store<any>
   ) {  }
 
   reply = new Subject<string>();
@@ -101,7 +106,15 @@ export class BlogService {
   }
 
   getNewCommentsCount() {
-    return this.authHttp.get(BlogConfig.getNewCommentsCount).toPromise();
+    this.authHttp.get(BlogConfig.getNewCommentsCount).map((res) => res.json().count).switchMap((count:number) => {
+      this.store$.select('tipReducer').dispatch(new tip.Update(count));
+      return Observable.of<number>(count)
+    }).catch(e => {
+        if(e.status === 401) {
+          this.store$.select('authReducer').dispatch(new auth.Logout());
+        }
+        return Observable.of<any>(e)
+      }).subscribe();
   }
 
   getNewComments() {
@@ -109,7 +122,10 @@ export class BlogService {
   }
 
   readNewCommentsByArticleId(id:string) {
-    return this.authHttp.get(BlogConfig.readNewCommentsByArticleId.replace('{str}',id)).toPromise();
+    this.authHttp.get(BlogConfig.readNewCommentsByArticleId.replace('{str}',id)).map((res) => res.json().count).switchMap((count:number) => {
+      this.store$.select('tipReducer').dispatch(new tip.Update(count));
+      return Observable.of<any>(count)
+    }).catch(e => {console.log(e);return Observable.of<any>(e)}).subscribe();
   }
 
   checkUser(data:{accountName:string,password:string}) {
