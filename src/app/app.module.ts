@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { authReducer, tipReducer } from './core/reducers';
+import { authReducer } from './core/reducers/auth';
+import { tipReducer } from './core/reducers/tip'
 import { AuthEffects } from './core/effects/auth';
 import { AppRoutingModule } from './route/app-routing.module';
 import { CoreModule } from './core/core.module';
@@ -32,7 +33,7 @@ import { AuthGuard }              from './route/auth-guard.service';
     AppRoutingModule,
     ContentModule,
     FormsModule,
-    StoreModule.forRoot({authReducer, tipReducer}),
+    StoreModule.forRoot({authReducer:authReducer, tipReducer:tipReducer}),
     EffectsModule.forRoot([AuthEffects])
   ],
   providers: [AuthGuard],

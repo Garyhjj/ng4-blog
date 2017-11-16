@@ -9,7 +9,7 @@ const initialState: State = {
   auth: false,
 };
 
-export function authReducer(state = initialState, action: auth.Actions): State {
+export let authReducer = (state = initialState, action: auth.Actions): State =>{
   switch (action.type) {
     case auth.LOGIN:
       localStorage.setItem('id_token',action.payload);
@@ -23,10 +23,15 @@ export function authReducer(state = initialState, action: auth.Actions): State {
 
     case auth.INIT:
       let token = localStorage.getItem('id_token');
-      return token? {
-        auth: !new JwtHelper().isTokenExpired(token)
-      }:{
-        auth: false
+      if(token) {
+        let mes = token.split(' ');
+        return {
+          auth: !new JwtHelper().isTokenExpired(mes.length>1?mes[1]:mes[0])
+        }
+      } else {
+        return {
+          auth: false
+        }
       }
     default:
       return state;
