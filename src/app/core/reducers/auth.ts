@@ -9,7 +9,7 @@ const initialState: State = {
   auth: false,
 };
 
-export let authReducer = (state = initialState, action: auth.Actions): State =>{
+export function authReducer(state = initialState, action: auth.Actions): State {
   switch (action.type) {
     case auth.LOGIN:
       localStorage.setItem('id_token',action.payload);

@@ -8,7 +8,7 @@ const initialState: TipState = {
   tip: 0,
 };
 
-export const tipReducer = (state = initialState, action: tip.TipActions) => {
+export function tipReducer (state = initialState, action: tip.TipActions) {
   switch (action.type) {
     case tip.UPDATE:
       return {
