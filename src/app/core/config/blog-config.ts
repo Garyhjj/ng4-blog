@@ -36,4 +36,6 @@ export class BlogConfig {
   static readNewCommentsByArticleId = BlogConfig.baseUrl + 'comments/readed?id={str}';
 
   static checkUser = BlogConfig.baseUrl + 'users/';
+
+  static uploadImage ='http://localhost/images/';
 }

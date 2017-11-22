@@ -85,6 +85,34 @@ export class EditComponent implements OnInit {
       })
     }
   }
+  uploadImages(e:DragEvent){
+    let files = e.dataTransfer.files;
+    if(files.length>0){
+      let formData:FormData;
+      Array.prototype.forEach.call(files,(f,i) =>{
+        if(/image/.test(f.type.toLowerCase())){
+          formData = formData || new FormData;
+          formData.append('files',f);console.log(f);
+        }
+      })
+      formData && this.blogService.uploadImages(formData).map(res => res.json()).subscribe((res:string[]) => {
+        if(res) {
+          let control = this.editFg.get('content');
+          let data = control.value;
+          res.forEach((r:string) => data =!data?`![image](${r})`:`${data}
+      
+![image](${r})`);
+          control.setValue(data);
+          this.update(data);
+        }
+      },(err) =>console.log(err)
+      
+      )
+    }
+    e.preventDefault();
+    e.stopPropagation()
+    return false
+  }
 
   delete(id) {
     if(!this.canDelete) {

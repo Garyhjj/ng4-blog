@@ -131,4 +131,8 @@ export class BlogService {
   checkUser(data:{accountName:string,password:string}) {
     return this.http.post(BlogConfig.checkUser, data).toPromise();
   }
+
+  uploadImages(data) {
+    return this.http.post(BlogConfig.uploadImage,data);
+  }
 }
