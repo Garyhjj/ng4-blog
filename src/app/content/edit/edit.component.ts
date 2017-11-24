@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 
 import { FormBuilder, FormGroup, AbstractControl, Validator } from '@angular/forms';
@@ -14,6 +14,7 @@ import * as marked from 'marked';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+  @ViewChild('con') contentRef:any;
   content:string;
   editFg:FormGroup;
   original:any;
@@ -98,12 +99,16 @@ export class EditComponent implements OnInit {
       formData && this.blogService.uploadImages(formData).map(res => res.json()).subscribe((res:string[]) => {
         if(res) {
           let control = this.editFg.get('content');
-          let data = control.value;
-          res.forEach((r:string) => data =!data?`![image](${r})`:`${data}
+          let data:string = control.value;
+          let startPoint = this.contentRef.nativeElement.selectionStart || 0;
+          let front = data.substr(0,startPoint);
+          let behind = data.substr(startPoint);
+          res.forEach((r:string) => front =!front?`![image](${r})`:`${front}
       
 ![image](${r})`);
-          control.setValue(data);
-          this.update(data);
+          let output = front+behind;
+          control.setValue(output);
+          this.update(output);
         }
       },(err) =>console.log(err)
       

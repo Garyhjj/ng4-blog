@@ -1,5 +1,5 @@
 export class BlogConfig {
-  static baseUrl = 'http://localhost:7100/';
+  static baseUrl = 'http://120.79.9.52:7100/';
   // static baseUrl = 'http://codeend.ngrok.cc/';
   // static baseUrl = 'http://codeend.tunnel.qydev.com/';
 
@@ -37,5 +37,5 @@ export class BlogConfig {
 
   static checkUser = BlogConfig.baseUrl + 'users/';
 
-  static uploadImage ='http://localhost/images/';
+  static uploadImage ='/images/';
 }
