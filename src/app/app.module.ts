@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -13,9 +14,6 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AsideComponent } from './aside/aside.component';
 import { LoginComponent } from './login/login.component';
-import { AboutComponent } from './about/about.component';
-import { SoftwareComponent } from './software/software.component';
-import { ContentModule } from './content/content.module';
 import { AuthGuard }              from './route/auth-guard.service';
 
 @NgModule({
@@ -23,16 +21,14 @@ import { AuthGuard }              from './route/auth-guard.service';
     AppComponent,
     NavComponent,
     AsideComponent,
-    LoginComponent,
-    AboutComponent,
-    SoftwareComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     CoreModule,
     AppRoutingModule,
-    ContentModule,
     FormsModule,
+    SharedModule,
     StoreModule.forRoot({authReducer:authReducer, tipReducer:tipReducer}),
     EffectsModule.forRoot([AuthEffects])
   ],

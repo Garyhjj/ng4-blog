@@ -33,7 +33,7 @@ export class ContentComponent implements OnInit {
           pageSize:result.onePage,//每頁容量
           dataTotal:result.total,//總數據數量
           currPage:params.id,//目前頁碼
-          currRoute:'./main',//目前除頁碼id的路由地址
+          currRoute:'./home',//目前除頁碼id的路由地址
           pageLength: ContentConfig.pageLength//顯示的最多頁碼數
         }
         this.blogService.scrollDown.next(0);

@@ -1,16 +1,16 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 
-import { NgValidatorExtendService } from '../../core/services/ng-validator-extend.service';
+import { NgValidatorExtendService } from '../../../core/services/ng-validator-extend.service';
 
-import { BlogService } from '../../core/services/blog.service';
+import { BlogService } from '../../../core/services/blog.service';
 
 import { Subscription }           from 'rxjs/Subscription';
 
 import * as marked from 'marked';
 import { JwtHelper } from 'angular2-jwt';
 import { tify, sify } from 'chinese-conv';
-import { APPConfig } from '../../shared/config/app.config';
+import { APPConfig } from '../../../shared/config/app.config';
 
 @Component({
   selector: 'my-comment',

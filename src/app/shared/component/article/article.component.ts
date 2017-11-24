@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router }            from '@angular/router';
 
-import { BlogService } from '../../core/services/blog.service';
+import { BlogService } from '../../../core/services/blog.service';
 import { Subscription }           from 'rxjs/Subscription';
 
 @Component({
@@ -46,7 +46,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
    * 进入编辑状态
    */
   reEdit() {
-    this.router.navigate(['/edit/'+this.article._id]);
+    this.router.navigate(['/admin/edit/'+this.article._id]);
   }
 
   /**

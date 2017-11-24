@@ -1,7 +1,6 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" routerLinkActive='active' ><a routerLink="/main">主页</a></li>
+  <li role="presentation" routerLinkActive='active' ><a routerLink="home">主页</a></li>
   <li role="presentation" routerLinkActive='active' ><a routerLink="software">工具</a></li>
   <li role="presentation" routerLinkActive='active' ><a routerLink="about">关于</a></li>
-  <li role="presentation" routerLinkActive='active' ><a routerLink="edit" *ngIf="!isLogout">新建</a></li>
-  <li role="presentation" routerLinkActive='active' ><a routerLink="tip" *ngIf="!isLogout && (num | async) && (+num | async) >0">提醒({{num | async}})</a></li>
+  <li role="presentation" routerLinkActive='active' ><a routerLink="admin" *ngIf="!isLogout">管理员<span *ngIf="(num | async) && (+num | async) >0"> 新消息：({{num | async}})</span></a></li>
 </ul>

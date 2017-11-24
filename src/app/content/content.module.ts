@@ -1,31 +1,14 @@
+import { ContentRoutingModule } from './content-routing.module';
+import { SharedModule } from './../shared/shared.module';
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ContentComponent } from './content.component';
-import { ArticleComponent } from './article/article.component';
-import { PageComponent } from './page/page.component';
-import { DetailComponent } from './detail/detail.component';
-import { CommentComponent } from './comment/comment.component';
-import { EditComponent } from './edit/edit.component';
-import { SearchComponent } from './search/search.component';
-import { MessageComponent } from './message/message.component';
-import { TipComponent } from './tip/tip.component';
-import { MydatePipe } from './shared/pipes/mydate.pipe';
 
 @NgModule({
-  imports:      [ CommonModule, FormsModule, ReactiveFormsModule ],
+  imports:      [ CommonModule, ContentRoutingModule, SharedModule ],
   declarations: [
-    ContentComponent,
-    ArticleComponent,
-    PageComponent,
-    DetailComponent,
-    CommentComponent,
-    EditComponent,
-    SearchComponent,
-    MessageComponent,
-    TipComponent,
-    MydatePipe
+    ContentComponent
   ],
   providers:    [  ]
 })
