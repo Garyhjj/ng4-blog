@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 
 import { BlogService } from '../../core/services/blog.service';
@@ -9,6 +9,7 @@ import { BlogService } from '../../core/services/blog.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  @ViewChild('searchArea') searchArea:any;
   articles: any;
   setPage: any;
   article_opt = {
@@ -26,6 +27,7 @@ export class SearchComponent implements OnInit {
       let key = params.value;
       let page = +params.page;
       this.setPage = '';
+      this.blogService.loading.next(true);
       switch (type.toLowerCase()) {
         case 'type':
           this.getArticlesByType(key, page)
@@ -40,6 +42,7 @@ export class SearchComponent implements OnInit {
           this.getArticlesByKey(key, page)
           break;
         default:
+          this.blogService.loading.next(false);
           break;
       }
     })
@@ -48,6 +51,7 @@ export class SearchComponent implements OnInit {
     this.blogService.getArticlesByType(key, page).then((res) => {
       let data = res.json();
       this.articles = data.articles;
+      this.finally();
       if(this.articles.length === 0) return
       this.setPageMes(data.total, data.onePage, page, 'type/' + key + '/')
     })
@@ -57,6 +61,7 @@ export class SearchComponent implements OnInit {
     this.blogService.getArticlesByLabel(key, page).then((res) => {
       let data = res.json();
       this.articles = data.articles;
+      this.finally();
       if(this.articles.length === 0) return
       this.setPageMes(data.total, data.onePage, page, 'label/' + key + '/')
     })
@@ -66,6 +71,7 @@ export class SearchComponent implements OnInit {
     this.blogService.getArticlesByDate(key, page).then((res) => {
       let data = res.json();
       this.articles = data.articles;
+      this.finally();
       if(this.articles.length === 0) return
       this.setPageMes(data.total, data.onePage, page, 'date/' + key + '/')
     })
@@ -75,6 +81,7 @@ export class SearchComponent implements OnInit {
     this.blogService.getArticlesByKey(key, page).then((res) => {
       let data = res.json();
       this.articles = data.articles;
+      this.finally();
       if(this.articles.length === 0) return
       this.setPageMes(data.total, data.onePage, page, 'key/' + key + '/')
     })
@@ -92,6 +99,10 @@ export class SearchComponent implements OnInit {
       };
       this.updateLocal();
     }
+  }
+  finally() {
+    this.searchArea.nativeElement.scrollIntoView();
+    this.blogService.loading.next(false);
   }
   updateLocal() {
     this.blogService.currPageArticles = this.articles;

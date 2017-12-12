@@ -1,5 +1,5 @@
-<div class="content">
-  <div class="" *ngIf="articles && articles.length === 0">
+<div class="content" #searchArea>
+  <div class="tip" *ngIf="articles && articles.length === 0">
     <h3>没结果</h3>
   </div>
   <div class="post" *ngFor="let item of articles">

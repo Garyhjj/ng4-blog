@@ -23,7 +23,7 @@ export class BlogService {
   reply = new Subject<string>();
   newComment = new Subject<any>();
   updateAside = new Subject<any>();
-  scrollDown = new Subject<Number>();
+  loading = new Subject<boolean>();
   checkUnread = new Subject<any>();
   asideMes:any;
   jwtHelper: JwtHelper = new JwtHelper();

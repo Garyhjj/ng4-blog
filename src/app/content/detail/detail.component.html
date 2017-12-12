@@ -1,19 +1,18 @@
-<div class="" *ngIf="afterReq && !article">
-   <h3>没有此文章</h3>
-</div>
-<div class="" *ngIf="!afterReq">
-   <h3>loading....</h3>
-</div>
-<div class="" *ngIf="article">
-  <my-article [article]="article" [opt]="article_opt"></my-article>
-</div>
-<ul class="post-near" *ngIf="article">
-        <li *ngIf="article.previous" (click)="toOther(article.previous._id)">上一篇: <a href="javascript:" [title]="article.previous.title">{{article.previous.title}}</a></li>
-        <li *ngIf="article.next" (click)="toOther(article.next._id)">下一篇: <a href="javascript:" [title]="article.next.title">{{article.next.title}}</a></li>
-    </ul>
-<div class="msg" *ngIf="article">
-  <my-msg [articleId]="article._id"></my-msg>
-</div>
-<div class="comment" #comment>
-  <my-comment [articleId]="article._id" *ngIf="article"></my-comment>
+<div #wholeArea class="detail-area">
+  <div class="" *ngIf="afterReq && !article">
+    <h3>没有此文章</h3>
+  </div>
+  <div class="" *ngIf="article">
+    <my-article [article]="article" [opt]="article_opt"></my-article>
+  </div>
+  <ul class="post-near" *ngIf="article">
+    <li *ngIf="article.previous" (click)="toOther(article.previous._id)">上一篇: <a href="javascript:" [title]="article.previous.title">{{article.previous.title}}</a></li>
+    <li *ngIf="article.next" (click)="toOther(article.next._id)">下一篇: <a href="javascript:" [title]="article.next.title">{{article.next.title}}</a></li>
+  </ul>
+  <div class="msg" *ngIf="article">
+    <my-msg [articleId]="article._id"></my-msg>
+  </div>
+  <div class="comment" #comment>
+    <my-comment [articleId]="article._id" *ngIf="article"></my-comment>
+  </div>
 </div>

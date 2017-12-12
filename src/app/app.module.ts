@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { LoadingModule } from 'ngx-loading';
 
 import { authReducer } from './core/reducers/auth';
 import { tipReducer } from './core/reducers/tip'
@@ -24,6 +25,7 @@ import { AuthGuard }              from './route/auth-guard.service';
     LoginComponent
   ],
   imports: [
+    LoadingModule,
     BrowserModule,
     CoreModule,
     AppRoutingModule,

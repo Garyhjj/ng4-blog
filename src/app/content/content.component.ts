@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params }            from '@angular/router';
 
 import { BlogService } from '../core/services/blog.service';
@@ -10,6 +10,8 @@ import { ContentConfig } from './shared/config/content.config';
   styleUrls : ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
+
+  @ViewChild('articleArea') articleArea:any;
   articles:any;
   setPage:any;
   article_opt = {
@@ -24,6 +26,7 @@ export class ContentComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) =>{
       this.setPage = '';
+      this.blogService.loading.next(true);
       this.blogService.getArticles(params.id).then((res) => {
         let result = res.json()
         this.articles = result.articles;
@@ -36,7 +39,8 @@ export class ContentComponent implements OnInit {
           currRoute:'./home',//目前除頁碼id的路由地址
           pageLength: ContentConfig.pageLength//顯示的最多頁碼數
         }
-        this.blogService.scrollDown.next(0);
+        this.articleArea.nativeElement.scrollIntoView();
+        this.blogService.loading.next(false);
       })
     })
 

@@ -1,8 +1,8 @@
-<div class="content">
+<div class="content" #articleArea>
   <div class="" *ngIf="articles && articles.length === 0">
     <h3>没结果</h3>
   </div>
-  <div class="post" *ngFor="let item of articles">
+  <div class="post" *ngFor="let item of articles" #articleArea>
     <div class="article">
       <my-article [article]="item" [opt]="article_opt"></my-article>
     </div>

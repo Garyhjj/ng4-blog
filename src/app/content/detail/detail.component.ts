@@ -13,7 +13,7 @@ import { Subscription }           from 'rxjs/Subscription';
 export class DetailComponent implements OnInit, AfterViewInit {
 
   @ViewChild('comment') commentArea:any;
-
+  @ViewChild('wholeArea') wholeArea:any;
   containerArea:any;
   afterReq:boolean = false;// 控制页面loading的显示
   constructor(
@@ -32,7 +32,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
       let opt = params.name.split('*-*');
       let id = opt[0];
       setTimeout(() => {
-        this.blogService.scrollDown.next(0);
+        this.wholeArea.nativeElement.scrollIntoView();
       },20);
       let searchLocal = this.blogService.searchLocal(id);
       if(searchLocal && searchLocal.length>0) {
@@ -40,17 +40,19 @@ export class DetailComponent implements OnInit, AfterViewInit {
         this.afterReq = true;
         if(opt.length>1 && opt[1] === 'comment') {
           setTimeout(() => {
-            this.blogService.scrollDown.next(this.commentArea.nativeElement.offsetTop);
+            this.commentArea.nativeElement.scrollIntoView();
           },20);
         }
       } else {
+        this.blogService.loading.next(true);
         this.blogService.getArticlesById(id).then((res) => {
           if(res.status === 200) {
             this.afterReq = true;
             this.article = res.json().article;
+            this.blogService.loading.next(false);
             if(opt.length>1 && opt[1] === 'comment') {
               setTimeout(() => {
-                this.blogService.scrollDown.next(this.commentArea.nativeElement.offsetTop);
+                this.commentArea.nativeElement.scrollIntoView();
               },20);
             }
           }

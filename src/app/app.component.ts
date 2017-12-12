@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   user = APPConfig.administrator;
   asideMes:any;
   container:any;
+  loading:boolean = false;
   constructor(
     private blogService: BlogService,
     private store$: Store<any>
@@ -27,13 +28,13 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.store$.select('authReducer').dispatch(new Init())
     this.container = document.getElementsByTagName('body')[0];
-    this.blogService.scrollDown.subscribe((val) => {
-      this.scrollDown(val);
-    })
-  }
-  scrollDown(data) {
-    setTimeout(() => {
-      this.container.scrollTop = data;
-    }, 0);
+    this.blogService.loading.subscribe((b) => setTimeout(() => {
+      this.loading= b;
+      b && setTimeout(() => {
+        let back:any = document.getElementsByClassName('backdrop');
+        (back.length>0) && (back[0].style.height = Math.max(document.body.clientHeight,window.screen.height)+'px');
+      },0)
+      
+    },20));
   }
 }
