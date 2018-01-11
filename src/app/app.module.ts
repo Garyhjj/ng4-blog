@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -5,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingModule } from 'ngx-loading';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { authReducer } from './core/reducers/auth';
 import { tipReducer } from './core/reducers/tip'
@@ -31,6 +33,7 @@ import { AuthGuard }              from './route/auth-guard.service';
     AppRoutingModule,
     FormsModule,
     SharedModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     StoreModule.forRoot({authReducer:authReducer, tipReducer:tipReducer}),
     EffectsModule.forRoot([AuthEffects])
   ],
