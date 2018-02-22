@@ -1,10 +1,12 @@
 var express = require('express'),
   path = require('path'),
-  fs = require('fs');
-url = require('url');
-scanModel = require('./models/scan');
+  fs = require('fs'),
+url = require('url'),
+scanModel = require('./models/scan'),
+compression = require('compression');
 var app = express();
 
+app.use(compression());
 app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
